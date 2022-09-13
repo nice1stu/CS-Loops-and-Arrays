@@ -15,5 +15,6 @@
 {
     Console.WriteLine("Give me another number.");
     char input = Convert.ToChar(Console.ReadLine());
-    Console.WriteLine(input ++ );
+    input++;
+    Console.WriteLine(input);
 }
