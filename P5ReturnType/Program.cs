@@ -2,33 +2,35 @@
 
 string playerChoice;
 string aIChoice;
+Random random = new Random();
+bool playAgain = true;
 
 void PlayerChoice()
 {
-    Console.WriteLine("Pick Rock, Paper or Scissors.");
-    string playerChoice = Console.ReadLine();
-    if (playerChoice != "Rock" || playerChoice != "Paper" || playerChoice != "Scissors")
+    playerChoice = "";
+    while (playerChoice != "rock" && playerChoice != "paper" && playerChoice != "scissors")
     {
-        return PlayerChoice()
-            Console.WriteLine("That's not a valid input.");
+        Console.WriteLine("Pick rock, paper or scissors.");
+        playerChoice = Console.ReadLine();
+        playerChoice = playerChoice.ToLower();
     }
 
 }
 
 void AIChoice()
 {
-    Random random = new Random(1, 3);
+    int random 
     if (random == 1)
     {
-        aIChoice = "Rock";
+        aIChoice = "rock";
     }
     else if (random == 2)
     {
-        aIChoice = "Paper";
+        aIChoice = "paper";
     }
     else if (random == 3)
     {
-        aIChoice = "Scissors";
+        aIChoice = "scissors";
     }
 
 }
