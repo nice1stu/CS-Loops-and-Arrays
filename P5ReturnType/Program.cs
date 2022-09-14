@@ -13,6 +13,7 @@ while (playAgain)
     
     PlayerInput();
     AiChoice();
+    Console.WriteLine("I pick " + aIChoice);
 
     switch (playerChoice)
     {
@@ -79,7 +80,7 @@ while (playAgain)
 Console.WriteLine("Thanks for playing");
 
 // Methods
-void PlayerInput()
+string PlayerInput()
 {
     Console.WriteLine("Pick rock, paper or scissors.");
     playerChoice = Console.ReadLine();
@@ -89,9 +90,10 @@ void PlayerInput()
         Console.WriteLine("That's not a valid input.");
         PlayerInput();
     }
+    return playerChoice;
 }
 
-void AiChoice()
+string AiChoice()
 {
     switch (random.Next(1, 4))
     {
@@ -107,5 +109,6 @@ void AiChoice()
             aIChoice = "scissors";
             break;
     }
-    Console.WriteLine("I pick " + aIChoice);
+
+    return aIChoice;
 }
