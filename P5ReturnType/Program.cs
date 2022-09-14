@@ -9,26 +9,10 @@ bool playAgain = true;
 
 while (playAgain)
 {
-    //playerChoice = "";
     aIChoice = "";
     
     PlayerInput();
-
-    switch (random.Next(1, 4))
-    {
-        case 1:
-            aIChoice = "rock";
-
-            break;
-        case 2:
-            aIChoice = "paper";
-            
-            break;
-        case 3:
-            aIChoice = "scissors";
-            break;
-    }
-    Console.WriteLine("I pick " + aIChoice);
+    AiChoice();
 
     switch (playerChoice)
     {
@@ -94,6 +78,7 @@ while (playAgain)
 }
 Console.WriteLine("Thanks for playing");
 
+// Methods
 void PlayerInput()
 {
     Console.WriteLine("Pick rock, paper or scissors.");
@@ -104,4 +89,23 @@ void PlayerInput()
         Console.WriteLine("That's not a valid input.");
         PlayerInput();
     }
+}
+
+void AiChoice()
+{
+    switch (random.Next(1, 4))
+    {
+        case 1:
+            aIChoice = "rock";
+
+            break;
+        case 2:
+            aIChoice = "paper";
+            
+            break;
+        case 3:
+            aIChoice = "scissors";
+            break;
+    }
+    Console.WriteLine("I pick " + aIChoice);
 }
