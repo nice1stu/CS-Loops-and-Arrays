@@ -2,21 +2,20 @@
 int max = 10;
 int guess;
 int number = 0;
-//AskNumberBetween();
 
-    int AskNumberBetween()
+int AskNumberBetween()
     {
         Random random = new Random();
-        int number = random.Next(min, max);
+        number = random.Next(min, max);
+        Console.WriteLine(number);
         return number;
     }
-Console.WriteLine(number);
-
-    do
+do
     {
+        AskNumberBetween();
         Console.WriteLine($"Please give me a number between {min} and {max}");
         string input = Console.ReadLine();
         guess = Convert.ToInt32(input);
-    } while (AskNumberBetween() != guess);
+    } while (number != guess);
 
     Console.WriteLine($"You gave the number {guess}");
