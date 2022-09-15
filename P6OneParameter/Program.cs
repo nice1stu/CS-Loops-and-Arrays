@@ -1,21 +1,34 @@
-﻿Console.WriteLine("What Fibonacci number would you like?");
-int n = Convert.ToInt32(Console.ReadLine());
-
-//Console.WriteLine(fibonacci(n);
-
+﻿/*Console.WriteLine("What Fibonacci number would you like?");
+string input = Console.ReadLine();
+int n = Convert.ToInt32(input);
+fibonacci((int n);
 int fibonacci(int n)
 {
-    if (n == 0)
+    n = 7;
+    if ((n == 0 || n == 1))
     {
-        return 0;
+        return n;
     }
-
-    if (n == 1)
-    {
-        return 1;
-    }
-
-    return = (return - 1) + (return -2);
+    else
+        return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-Console.WriteLine(fibonacci);
+if (n == 1)
+{
+    return 1;
+}
+
+return n;
+    
+
+Console.WriteLine(fibonacci);*/
+int n;
+int f(int n)
+{
+    if (n == 0 || n == 1)
+        return n;
+    else
+        return f(n - 1) + f(n - 2);
+}
+    
+    Console.WriteLine(f);
