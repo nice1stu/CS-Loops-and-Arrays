@@ -15,9 +15,10 @@ float position = start;
 float timePassed = 0f;
 
 // TODO: Implement the missing functions here :)
+
 float Lerp(float start, float end, float timePassed)
 {
-    position = start + ((end - start) * animationDuration);
+    position = start + ((end - start) * timePassed);
     return position;
 }
 
@@ -25,7 +26,6 @@ int RoundToInt(float position)
 {
     position = MathF.Round(position);
     int positionInt32 = Convert.ToInt32(position);
-    position = positionInt32;
     return positionInt32;
 }
 
