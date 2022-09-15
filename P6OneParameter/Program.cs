@@ -15,6 +15,6 @@ int fibonacci(int n)
     else
         return fibonacci(n - 1) + fibonacci(n - 2);
 }
-
+Console.WriteLine(fibonacci(n));
 return n;
     
