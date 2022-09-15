@@ -24,7 +24,9 @@ float Lerp(float start, float end, float timePassed)
 int RoundToInt(float position)
 {
     position = MathF.Round(position);
-    return position;
+    int positionInt32 = Convert.ToInt32(position);
+    position = positionInt32;
+    return positionInt32;
 }
 
 
