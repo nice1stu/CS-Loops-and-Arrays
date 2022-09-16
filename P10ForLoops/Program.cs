@@ -1,5 +1,6 @@
 ﻿int numberOfTimes = 13;
 int currentCount = 0;
+double startNum = 1;
 
 Console.WriteLine("Here are 13 random numbers (1-6):");
 
@@ -13,11 +14,12 @@ for (currentCount = 0; currentCount < numberOfTimes; currentCount++)
 Console.WriteLine("");
 Console.WriteLine("Here's the power of 2's:");
 PowersLoop:
-for (currentCount = 0; currentCount < 11; currentCount++)
+Console.Write($"1");
+for (currentCount = 0; currentCount < 10; currentCount++)
 {
-    double startNum = 0;
-    double answerNum;
-    answerNum = Math.Pow(2, startNum);
-    Console.Write($"{answerNum} - ");
+
+    //double answerNum;
+    double answerNum = (startNum * 2);
+    Console.Write($" - {answerNum}");
     startNum = answerNum;
 }
