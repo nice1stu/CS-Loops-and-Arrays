@@ -160,6 +160,7 @@ void cellCheck()
 
 void player1Turn() // player1 choose
 {
+    DrawBoard();
     Console.Write(player1);
     Console.WriteLine(" choose the Number of the square you want to place your x");
     string choicePlayer1 = Console.ReadLine();
@@ -170,47 +171,101 @@ void player1Turn() // player1 choose
     }*/
     if (choicePlayer1 == "1")
     {
+        if ((num1 == "x") || (num1 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player1Turn();
+        }
+        else
         num1 = "x";
         k1I = 10;
     }
     else if (choicePlayer1 == "2")
-    {
+    {        
+        if ((num2 == "x") || (num2 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player1Turn();
+        }
+        else
         num2 = "x";
         k2I = 10;
 
     }
     else if (choicePlayer1 == "3")
     {
+        if ((num3 == "x") || (num3 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player1Turn();
+        }
+        else
         num3 = "x";
         k3I = 10;
     }
     else if (choicePlayer1 == "4")
     {
+        if ((num4 == "x") || (num4 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player1Turn();
+        }
+        else
         num2 = "x";
         k4I = 10;
     }
     else if (choicePlayer1 == "5")
     {
+        if ((num5 == "x") || (num5 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player1Turn();
+        }
+        else
         num5 = "x";
         k5I = 10;
     }
     else if (choicePlayer1 == "6")
     {
+        if ((num6 == "x") || (num6 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player1Turn();
+        }
+        else
         num6 = "x";
         k6I = 10;
     }
     else if (choicePlayer1 == "7")
     {
+        if ((num7 == "x") || (num7 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player1Turn();
+        }
+        else
         num7 = "x";
         k7I = 10;
     }
     else if (choicePlayer1 == "8")
     {
+        if ((num8 == "x") || (num8 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player1Turn();
+        }
+        else
         num8 = "x";
         k8I = 10;
     }
     else if (choicePlayer1 == "9")
     {
+        if ((num9 == "x") || (num9 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player1Turn();
+        }
+        else
         num9 = "x";
         k9I = 10;
     }
@@ -221,57 +276,113 @@ void player1Turn() // player1 choose
 
 void player2Turn()// player2 choose
 {
+    DrawBoard();
     Console.Write(player2);
     Console.WriteLine(" choose the Number of the square you want to place your o");
     string choicePlayer2 = Console.ReadLine();
     // if occupied if cell = 0 or 10, choose another
     if (choicePlayer2 == "1")
     {
+        if ((num1 == "x") || (num1 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player2Turn();
+        }
+        else
         num1 = "o";
         k1I = 0;
     }
     else if (choicePlayer2 == "2")
     {
+        if ((num2 == "x") || (num2 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player2Turn();
+        }
+        else
         num2 = "o";
         k2I = 0;
     }
     else if (choicePlayer2 == "3")
     {
+        if ((num3 == "x") || (num3 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player2Turn();
+        }
+        else
         num3 = "o";
         k3I = 0;
     }
     else if (choicePlayer2 == "4")
     {
+        if ((num4 == "x") || (num4 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player2Turn();
+        }
+        else
         num4 = "o";
         k4I = 0;
     }
     else if (choicePlayer2 == "5")
     {
+        if ((num5 == "x") || (num5 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player2Turn();
+        }
+        else
         num5 = "o";
         k5I = 0;
     }
     else if (choicePlayer2 == "6")
     {
+        if ((num6 == "x") || (num6 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player2Turn();
+        }
+        else
         num6 = "o";
         k6I = 0;
     }
     else if (choicePlayer2 == "7")
     {
+        if ((num7 == "x") || (num7 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player2Turn();
+        }
+        else
         num7 = "o";
         k7I = 0;
     }
     else if (choicePlayer2 == "8")
     {
+        if ((num8 == "x") || (num8 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player2Turn();
+        }
+        else
         num8 = "o";
         k8I = 0;
     }
     else if (choicePlayer2 == "9")
     {
+        if ((num9 == "x") || (num9 == "o"))
+        {
+            Console.WriteLine("Cell already occupied, please choose another");
+            player2Turn();
+        }
+        else
         num9 = "o";
         k9I = 0;
     } 
     
     DrawBoard();
+    winCheck();
 }
 
 void update()
