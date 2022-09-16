@@ -17,14 +17,14 @@ int k6I = 5;
 int k7I = 5;
 int k8I = 5;
 int k9I = 5;
-int k1k3RowI = (k1I + k2I + k3I);
-int k4k6RowI = (k4I + k5I + k6I);
-int k7k9RowI = (k7I + k8I + k9I);
-int k1k7ColumnI = (k1I + k4I + k7I);
-int k2k8ColumnI = (k2I + k5I + k8I);
-int k3k9ColumnI = (k3I + k6I + k9I);
-int k1k9DiagonalI = (k1I + k5I + k9I);
-int k3k7DiagonalI = (k3I + k5I + k7I);
+int aRowI = (k1I + k2I + k3I);
+int bRowI = (k4I + k5I + k6I);
+int cRowI = (k7I + k8I + k9I);
+int xColumnI = (k1I + k4I + k7I);
+int yColumnI = (k2I + k5I + k8I);
+int zColumnI = (k3I + k6I + k9I);
+int åDiagonalI = (k1I + k5I + k9I);
+int öDiagonalI = (k3I + k5I + k7I);
 // What value is shown use readkey
 string num1 = "1";
 string num2 = "2";
@@ -125,14 +125,14 @@ void letsPlay()
 
 void winCheck()
 {
-    if (k1k3RowI == 30 || k4k6RowI == 30 || k7k9RowI == 30 || k1k7ColumnI == 30 || k2k8ColumnI == 30 || k3k9ColumnI == 30 || k1k9DiagonalI == 30 || k3k7DiagonalI == 30)
+    if (aRowI == 30 || bRowI == 30 || cRowI == 30 || xColumnI == 30 || yColumnI == 30 || zColumnI == 30 || åDiagonalI == 30 || öDiagonalI == 30)
     {
         Console.Write(player1);
         Console.WriteLine(" WINS !");
         hasWon = true;
         hasWonCheck(hasWon);
     }
-    else if (k1k3RowI == 0 || k4k6RowI == 0 || k7k9RowI == 0 || k1k7ColumnI == 0 || k2k8ColumnI == 0 || k3k9ColumnI == 0 || k1k9DiagonalI == 0 || k3k7DiagonalI == 0)
+    else if (aRowI == 0 || bRowI == 0 || cRowI == 0 || xColumnI == 0 || yColumnI == 0 || zColumnI == 0 || åDiagonalI == 0 || öDiagonalI == 0)
     {
         Console.Write(player2);
         Console.WriteLine(" WINS !");
@@ -164,6 +164,10 @@ void player1Turn() // player1 choose
     Console.WriteLine(" choose the Number of the square you want to place your x");
     string choicePlayer1 = Console.ReadLine();
     // if occupied if cell = 0 or 10, choose another
+    /*while ((choicePlayer1 == "x") || (choicePlayer1 == "o"))
+    {
+        Console.WriteLine($"Cell is already occupied, please choose another Cell");
+    }*/
     if (choicePlayer1 == "1")
     {
         num1 = "x";
@@ -272,14 +276,14 @@ void player2Turn()// player2 choose
 
 void update()
 {
-    k1k3RowI = (k1I + k2I + k3I);
-    k4k6RowI = (k4I + k5I + k6I);
-    k7k9RowI = (k7I + k8I + k9I);
-    k1k7ColumnI = (k1I + k4I + k7I);
-    k2k8ColumnI = (k2I + k5I + k8I);
-    k3k9ColumnI = (k3I + k6I + k9I);
-    k1k9DiagonalI = (k1I + k5I + k9I);
-    k3k7DiagonalI = (k3I + k5I + k7I);
+    aRowI = (k1I + k2I + k3I);
+    bRowI = (k4I + k5I + k6I);
+    cRowI = (k7I + k8I + k9I);
+    xColumnI = (k1I + k4I + k7I);
+    yColumnI = (k2I + k5I + k8I);
+    zColumnI = (k3I + k6I + k9I);
+    åDiagonalI = (k1I + k5I + k9I);
+    öDiagonalI = (k3I + k5I + k7I);
 }
 void PlayAgain()
 {
