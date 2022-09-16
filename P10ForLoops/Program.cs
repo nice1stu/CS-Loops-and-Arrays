@@ -1,6 +1,6 @@
 ﻿int numberOfTimes = 13;
 int currentCount = 0;
-double startNum = 1;
+
 
 Console.WriteLine("Here are 13 random numbers (1-6):");
 
@@ -18,8 +18,21 @@ Console.Write($"1");
 for (currentCount = 0; currentCount < 10; currentCount++)
 {
 
-    //double answerNum;
+    double startNum = 1;
     double answerNum = (startNum * 2);
     Console.Write($" - {answerNum}");
     startNum = answerNum;
 }
+Console.WriteLine("");
+Console.WriteLine("I'm counting down!");
+CountdownLoop:
+int countdown = 9;
+Console.Write($"10");
+for (currentCount = 0; currentCount < 9; currentCount++)
+{
+    
+    Console.Write($".. {countdown}");
+    countdown--;
+}
+
+
