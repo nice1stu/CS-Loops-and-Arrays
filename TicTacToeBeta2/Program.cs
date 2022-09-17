@@ -47,7 +47,7 @@ static int CheckWinner(char[] gameMarkers)
     }
 
     //3.4 if winner, announce who won and stop game
-    if (isGameWinner(gameMarkers))
+    if (IsGameWinner(gameMarkers))
     {
         return 1;
     }
@@ -67,7 +67,7 @@ static bool IsGameDraw(char[] gameMarkers)
            gameMarkers[8] != '9';
 }
     
-static bool isGameWinner(char[] gameMarkers)
+static bool IsGameWinner(char[] gameMarkers)
 {
     if (IsGameMarkersTheSame(gameMarkers, 0, 1, 2))
     {
@@ -130,13 +130,11 @@ void GameEngine(char[] gameMarkers, int currentPlayer)
              userInput.Equals("8") || 
              userInput.Equals("9")))
         {
-            //Console.Clear();
-
             int.TryParse(userInput, out var gamePlacementMarker);
 
             char currentMarker = gameMarkers[gamePlacementMarker - 1];
 
-            if (currentMarker.Equals("X") || currentMarker.Equals("O"))
+            if (currentMarker.Equals('X') || currentMarker.Equals('O'))
             {
                 Console.WriteLine("Cell already been played, please select another Cell");
             }
