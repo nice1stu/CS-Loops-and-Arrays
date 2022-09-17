@@ -123,7 +123,7 @@ void letsPlay()
     }
 }
 
-void winCheck()
+void winCheck() //need to add tie condition
 {
     if (aRowI == 30 || bRowI == 30 || cRowI == 30 || xColumnI == 30 || yColumnI == 30 || zColumnI == 30 || åDiagonalI == 30 || öDiagonalI == 30)
     {
@@ -145,16 +145,15 @@ void hasWonCheck(bool hasWon)
 {
     if (hasWon);
     PlayAgain();
-    //Console.WriteLine(" Thanks for playing");
 }
 
 
 // Player Turns
 // !!! Note add condition if cell already used, can't over-ride
-void cellCheck()
+/*void cellCheck()
 {
     
-}
+}*/
 
 //DrawBoard();
 
