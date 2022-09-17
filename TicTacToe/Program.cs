@@ -25,7 +25,7 @@ int yColumnI = (k2I + k5I + k8I);
 int zColumnI = (k3I + k6I + k9I);
 int åDiagonalI = (k1I + k5I + k9I);
 int öDiagonalI = (k3I + k5I + k7I);
-// What value is shown use readkey
+// What value is shown
 string num1 = "1";
 string num2 = "2";
 string num3 = "3";
@@ -35,6 +35,9 @@ string num6 = "6";
 string num7 = "7";
 string num8 = "8";
 string num9 = "9";
+string row3 = $"{num7} | {num8} | {num9}";
+string row2 = $"{num4} | {num5} | {num6}";
+string row1 = $"{num1} | {num2} | {num3}";
 
 Start();
 //update();
@@ -99,9 +102,9 @@ void Start()
 void DrawBoard()
 {
     Console.Clear();
-    string row3 = $"{num7} | {num8} | {num9}";
-    string row2 = $"{num4} | {num5} | {num6}";
-    string row1 = $"{num1} | {num2} | {num3}";
+    //string row3 = $"{num7} | {num8} | {num9}";
+    //string row2 = $"{num4} | {num5} | {num6}";
+    //string row1 = $"{num1} | {num2} | {num3}";
 
     Console.WriteLine(row3);
     Console.WriteLine("- | - | - ");
@@ -123,51 +126,13 @@ void letsPlay()
     }
 }
 
-void winCheck() //need to add tie condition
-{
-    if (aRowI == 30 || bRowI == 30 || cRowI == 30 || xColumnI == 30 || yColumnI == 30 || zColumnI == 30 || åDiagonalI == 30 || öDiagonalI == 30)
-    {
-        Console.Write(player1);
-        Console.WriteLine(" WINS !");
-        hasWon = true;
-        hasWonCheck(hasWon);
-    }
-    else if (aRowI == 0 || bRowI == 0 || cRowI == 0 || xColumnI == 0 || yColumnI == 0 || zColumnI == 0 || åDiagonalI == 0 || öDiagonalI == 0)
-    {
-        Console.Write(player2);
-        Console.WriteLine(" WINS !");
-        hasWon = true;
-        hasWonCheck(hasWon);
-    }
-}
-
-void hasWonCheck(bool hasWon)
-{
-    if (hasWon);
-    PlayAgain();
-}
-
-
-// Player Turns
-// !!! Note add condition if cell already used, can't over-ride
-/*void cellCheck()
-{
-    
-}*/
-
-//DrawBoard();
-
 void player1Turn() // player1 choose
 {
     DrawBoard();
     Console.Write(player1);
     Console.WriteLine(" choose the Number of the square you want to place your x");
     string choicePlayer1 = Console.ReadLine();
-    // if occupied if cell = 0 or 10, choose another
-    /*while ((choicePlayer1 == "x") || (choicePlayer1 == "o"))
-    {
-        Console.WriteLine($"Cell is already occupied, please choose another Cell");
-    }*/
+
     if (choicePlayer1 == "1")
     {
         if ((num1 == "x") || (num1 == "o"))
@@ -268,9 +233,9 @@ void player1Turn() // player1 choose
         num9 = "x";
         k9I = 10;
     }
-
-    DrawBoard();
+    update();
     winCheck();
+    DrawBoard();
 }
 
 void player2Turn()// player2 choose
@@ -395,6 +360,38 @@ void update()
     åDiagonalI = (k1I + k5I + k9I);
     öDiagonalI = (k3I + k5I + k7I);
 }
+
+void winCheck() //need to add tie condition
+{
+    if (aRowI == 30 || bRowI == 30 || cRowI == 30 || xColumnI == 30 || yColumnI == 30 || zColumnI == 30 || åDiagonalI == 30 || öDiagonalI == 30)
+    {
+        Console.Write(player1);
+        Console.WriteLine(" WINS !");
+        hasWon = true;
+        hasWonCheck(hasWon);
+    }
+    else if (aRowI == 0 || bRowI == 0 || cRowI == 0 || xColumnI == 0 || yColumnI == 0 || zColumnI == 0 || åDiagonalI == 0 || öDiagonalI == 0)
+    {
+        Console.Write(player2);
+        Console.WriteLine(" WINS !");
+        hasWon = true;
+        hasWonCheck(hasWon);
+    }
+
+    else if (k1I != 5 && k2I != 5 && k3I != 5 && k4I != 5 && k5I != 5 && k6I != 5 && k7I != 5 && k8I != 5 && k9I != 5)
+    {
+        Console.WriteLine("It's a Draw !");
+        PlayAgain();
+    }
+    
+}
+
+void hasWonCheck(bool hasWon)
+{
+    if (hasWon);
+    PlayAgain();
+}
+
 void PlayAgain()
 {
     Console.WriteLine("Would you like to play again?");
