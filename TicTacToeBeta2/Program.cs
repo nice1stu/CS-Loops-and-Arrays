@@ -2,10 +2,16 @@
 Main(args);
 void Main(string[] args)
 {
+    int currentPlayer = -1;
+    char[] gameMarkers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    
     do
     {
-        Instructions(1);
-        DrawGameBoard();
+        currentPlayer = GetNextPlayer(currentPlayer);
+        
+        
+        Instructions(currentPlayer);
+        DrawGameBoard(gameMarkers);
     
         string userInput = Console.ReadLine();
     
@@ -37,15 +43,24 @@ static void Instructions(int playerNumber)
     Console.WriteLine();
 }
 
-static void DrawGameBoard()
+static void DrawGameBoard(char[] gameMarkers)
 {
     //2.  Draw game board
     //2.1 Game will have 3 row & 3 columns numbered 1 - 9
 
-    Console.WriteLine(" 7 | 8 | 9 ");
+    Console.WriteLine($" {gameMarkers[6]} | {gameMarkers[7]} | {gameMarkers[8]} ");
     Console.WriteLine("---+---+---");
-    Console.WriteLine(" 4 | 5 | 6 ");
+    Console.WriteLine($" {gameMarkers[3]} | {gameMarkers[4]} | {gameMarkers[5]} ");
     Console.WriteLine("---+---+---");
-    Console.WriteLine(" 1 | 2 | 3 ");
+    Console.WriteLine($" {gameMarkers[0]} | {gameMarkers[1]} | {gameMarkers[2]} ");
 
+}
+
+static int GetNextPlayer(int player)
+{
+    if (player.Equals(1))
+    {
+        return 2;
+    }
+    return 1;
 }
