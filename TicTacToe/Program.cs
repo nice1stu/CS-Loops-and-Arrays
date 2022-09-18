@@ -8,7 +8,7 @@ bool hasWon = false;
 //int x = 10;
 //int o = 0;
 //What value is stored
-int k1I = 5;
+/*int k1I = 5;
 int k2I = 5;
 int k3I = 5;
 int k4I = 5;
@@ -16,7 +16,7 @@ int k5I = 5;
 int k6I = 5;
 int k7I = 5;
 int k8I = 5;
-int k9I = 5;
+int k9I = 5;*/
 int aRowI;
 int bRowI;
 int cRowI;
@@ -26,7 +26,7 @@ int zColumnI;
 int åDiagonalI;
 int öDiagonalI;
 // What value is shown
-string num1 = "1";
+/*string num1 = "1";
 string num2 = "2";
 string num3 = "3";
 string num4 = "4";
@@ -34,10 +34,11 @@ string num5 = "5";
 string num6 = "6";
 string num7 = "7";
 string num8 = "8";
-string num9 = "9";
-string row3 = $"{num7} | {num8} | {num9}";
+string num9 = "9";*/
+/*string row3 = $"{num7} | {num8} | {num9}";
 string row2 = $"{num4} | {num5} | {num6}";
-string row1 = $"{num1} | {num2} | {num3}";
+string row1 = $"{num1} | {num2} | {num3}";*/
+
 //replace with Array
 //setup initial board value
 //locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,),(0,1),(0,2)
@@ -99,11 +100,11 @@ void Start()
     Console.WriteLine(" ");
     Console.WriteLine("Lets Play !");
     Console.WriteLine(" ");
-    DrawBoard();
-    LetsPlay();
+    //DrawBoard();
+    //LetsPlay();
 }
 
-void DrawBoard()
+/*void DrawBoard()
 {
     Console.Clear();
     //string row3 = $"{num7} | {num8} | {num9}";
@@ -386,7 +387,7 @@ void WinCheck() //need to add tie condition
         PlayAgain();
     }
     
-}
+}*/
 
 void HasWonCheck(bool hasWon)
 {
