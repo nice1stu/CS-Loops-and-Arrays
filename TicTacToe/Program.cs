@@ -47,28 +47,16 @@ string[,] boardCellLocation = { { "7", "8", "9" }, { "4", "5", "6" }, { "1", "2"
 //locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,),(0,1),(0,2)
 int[,] boardCellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } };
 
-//print string array
-for(int i = 0; i < boardCellLocation.GetLength(0); i++)
-{
-    for (int j = 0; j < boardCellLocation.GetLength(1); j++)
-    {
-        Console.Write(boardCellLocation[i, j] + " ");
-    }
-    Console.WriteLine();
-}
-
 //print int array
-for(int i = 0; i < boardCellValue.GetLength(0); i++)
+/*for(int i = 0; i < boardCellValue.GetLength(0); i++)
 {
     for (int j = 0; j < boardCellValue.GetLength(1); j++)
     {
         Console.Write(boardCellValue[i, j] + " ");
     }
     Console.WriteLine();
-}
+}*/
 
-
-//char[,] num = new char [3,3];
 
 Start();
 
@@ -100,10 +88,34 @@ void Start()
     Console.WriteLine(" ");
     Console.WriteLine("Lets Play !");
     Console.WriteLine(" ");
+    PrintBoardArray();
     //DrawBoard();
     //LetsPlay();
 }
 
+void PrintBoardArray()
+{
+//print board (string array)
+    /*for (int i = 0; i < boardCellLocation.GetLength(0); i++)
+    {
+        for (int j = 0; j < boardCellLocation.GetLength(1); j++)
+        {
+            Console.Write("|" + boardCellLocation[i, j] + "|");
+        }
+        Console.WriteLine();
+        for (int j = 0; j < boardCellLocation.GetLength(1); j++)
+        {
+            Console.Write("---");
+        }
+        Console.WriteLine();
+    }*/
+    
+    Console.WriteLine($"{boardCellLocation[2,0]} | {boardCellLocation[2,1]} | {boardCellLocation[2,2]}");
+    Console.WriteLine("- + - + - ");
+    Console.WriteLine($"{boardCellLocation[1,0]} | {boardCellLocation[1,1]} | {boardCellLocation[1,2]}");
+    Console.WriteLine("- + - + - ");
+    Console.WriteLine($"{boardCellLocation[0,0]} | {boardCellLocation[0,1]} | {boardCellLocation[0,2]}");
+}
 /*void DrawBoard()
 {
     Console.Clear();
