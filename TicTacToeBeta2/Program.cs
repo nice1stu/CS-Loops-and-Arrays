@@ -119,6 +119,7 @@ void GameEngine(char[] gameMarkers, int currentPlayer)
     do
     {
         //3.  as user places markers on game update the board and notify which player turn
+        Console.WriteLine("Please select which square you want to play (1-9)");
         string userInput = Console.ReadLine();
 
         if (!string.IsNullOrEmpty(userInput) && 
@@ -180,8 +181,7 @@ static int GetNextPlayer(int player)
     return 1;
 }
 //void Player2AI
-//Ask Play Again
-void PlayAgain()
+void PlayAgain() //Ask Play Again
 {
     Console.WriteLine("Would you like to play again?");
     Console.WriteLine("[1] for YES : [2] for NO");
@@ -197,9 +197,7 @@ void PlayAgain()
         EndGame();
     }
 }
-
-//End Game
-void EndGame()
+void EndGame() //End Game
 {
     Console.WriteLine("Thanks for Playing");
     Environment.Exit(0);
