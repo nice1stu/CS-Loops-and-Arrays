@@ -1,10 +1,13 @@
 ﻿Console.WriteLine("Tic Tac Toe Beta 2");
-Main(args);
-void Main(string[]args)
+StartGame();
+void StartGame()
 {
     int gameStatus = 0;
     int currentPlayer = -1;
     char[] gameMarkers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    
+    //setup game
+    //setup AI
     
     do
     {
@@ -25,13 +28,16 @@ void Main(string[]args)
     if (gameStatus.Equals(1))
     {
         Console.WriteLine($"Player {currentPlayer} is the winner!");
+        PlayAgain();
     }
 
     if (gameStatus.Equals(2))
     {
         Console.WriteLine("The game is a draw");
+        PlayAgain();
     }
 }
+//void Setup
 static void Instructions(int playerNumber)
 {
     Console.WriteLine("--Welcome to Tic Tac Toe--");
@@ -172,4 +178,29 @@ static int GetNextPlayer(int player)
         return 2;
     }
     return 1;
+}
+//void Player2AI
+//Ask Play Again
+void PlayAgain()
+{
+    Console.WriteLine("Would you like to play again?");
+    Console.WriteLine("[1] for YES : [2] for NO");
+    int playAgain = Convert.ToInt32(Console.ReadLine());
+    if (playAgain == 1)
+    {
+        Console.Clear();
+        StartGame();
+    }
+    else
+    {
+        Console.Clear();
+        EndGame();
+    }
+}
+
+//End Game
+void EndGame()
+{
+    Console.WriteLine("Thanks for Playing");
+    Environment.Exit(0);
 }
