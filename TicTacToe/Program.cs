@@ -5,8 +5,8 @@ string player1;
 string player2;
 bool hasWon = false;
 // assign player1 = x, assign player2 = o
-int x = 10;
-int o = 0;
+//int x = 10;
+//int o = 0;
 //What value is stored
 int k1I = 5;
 int k2I = 5;
@@ -17,14 +17,14 @@ int k6I = 5;
 int k7I = 5;
 int k8I = 5;
 int k9I = 5;
-int aRowI = (k1I + k2I + k3I);
-int bRowI = (k4I + k5I + k6I);
-int cRowI = (k7I + k8I + k9I);
-int xColumnI = (k1I + k4I + k7I);
-int yColumnI = (k2I + k5I + k8I);
-int zColumnI = (k3I + k6I + k9I);
-int åDiagonalI = (k1I + k5I + k9I);
-int öDiagonalI = (k3I + k5I + k7I);
+int aRowI;
+int bRowI;
+int cRowI;
+int xColumnI;
+int yColumnI;
+int zColumnI;
+int åDiagonalI;
+int öDiagonalI;
 // What value is shown
 string num1 = "1";
 string num2 = "2";
@@ -38,13 +38,42 @@ string num9 = "9";
 string row3 = $"{num7} | {num8} | {num9}";
 string row2 = $"{num4} | {num5} | {num6}";
 string row1 = $"{num1} | {num2} | {num3}";
-/*replace with Array
-char[,] num = new char [3,3];*/
+//replace with Array
+//setup initial board value
+//locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,),(0,1),(0,2)
+string[,] boardCellLocation = { { "7", "8", "9" }, { "4", "5", "6" }, { "1", "2", "3" } };
+
+//locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,),(0,1),(0,2)
+int[,] boardCellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } };
+
+//print string array
+for(int i = 0; i < boardCellLocation.GetLength(0); i++)
+{
+    for (int j = 0; j < boardCellLocation.GetLength(1); j++)
+    {
+        Console.Write(boardCellLocation[i, j] + " ");
+    }
+    Console.WriteLine();
+}
+
+//print int array
+for(int i = 0; i < boardCellValue.GetLength(0); i++)
+{
+    for (int j = 0; j < boardCellValue.GetLength(1); j++)
+    {
+        Console.Write(boardCellValue[i, j] + " ");
+    }
+    Console.WriteLine();
+}
+
+
+//char[,] num = new char [3,3];
 
 Start();
 
 void Start()
 {
+    
     Console.WriteLine("-- Welcome to Tic Tac Toe --");
     
     //Number of players
@@ -71,7 +100,7 @@ void Start()
     Console.WriteLine("Lets Play !");
     Console.WriteLine(" ");
     DrawBoard();
-    letsPlay();
+    LetsPlay();
 }
 
 void DrawBoard()
@@ -88,20 +117,20 @@ void DrawBoard()
     Console.WriteLine(row1);
 }
 
-void letsPlay()
+void LetsPlay()
 {
     while (hasWon == false)
     {
-        player1Turn();
-        update();
-        winCheck();
-        player2Turn();
-        update();
-        winCheck();
+        Player1Turn();
+        Update();
+        WinCheck();
+        Player2Turn();
+        Update();
+        WinCheck();
     }
 }
 
-void player1Turn() // player1 choose
+void Player1Turn() // player1 choose
 {
     DrawBoard();
     Console.Write(player1);
@@ -113,10 +142,10 @@ void player1Turn() // player1 choose
         if ((num1 == "x") || (num1 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player1Turn();
+            Player1Turn();
         }
         else
-        num1 = "x";
+            num1 = "x";
         k1I = 10;
     }
     else if (choicePlayer1 == "2")
@@ -124,10 +153,10 @@ void player1Turn() // player1 choose
         if ((num2 == "x") || (num2 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player1Turn();
+            Player1Turn();
         }
         else
-        num2 = "x";
+            num2 = "x";
         k2I = 10;
 
     }
@@ -136,10 +165,10 @@ void player1Turn() // player1 choose
         if ((num3 == "x") || (num3 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player1Turn();
+            Player1Turn();
         }
         else
-        num3 = "x";
+            num3 = "x";
         k3I = 10;
     }
     else if (choicePlayer1 == "4")
@@ -147,10 +176,10 @@ void player1Turn() // player1 choose
         if ((num4 == "x") || (num4 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player1Turn();
+            Player1Turn();
         }
         else
-        num2 = "x";
+            num2 = "x";
         k4I = 10;
     }
     else if (choicePlayer1 == "5")
@@ -158,10 +187,10 @@ void player1Turn() // player1 choose
         if ((num5 == "x") || (num5 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player1Turn();
+            Player1Turn();
         }
         else
-        num5 = "x";
+            num5 = "x";
         k5I = 10;
     }
     else if (choicePlayer1 == "6")
@@ -169,10 +198,10 @@ void player1Turn() // player1 choose
         if ((num6 == "x") || (num6 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player1Turn();
+            Player1Turn();
         }
         else
-        num6 = "x";
+            num6 = "x";
         k6I = 10;
     }
     else if (choicePlayer1 == "7")
@@ -180,10 +209,10 @@ void player1Turn() // player1 choose
         if ((num7 == "x") || (num7 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player1Turn();
+            Player1Turn();
         }
         else
-        num7 = "x";
+            num7 = "x";
         k7I = 10;
     }
     else if (choicePlayer1 == "8")
@@ -191,10 +220,10 @@ void player1Turn() // player1 choose
         if ((num8 == "x") || (num8 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player1Turn();
+            Player1Turn();
         }
         else
-        num8 = "x";
+            num8 = "x";
         k8I = 10;
     }
     else if (choicePlayer1 == "9")
@@ -202,18 +231,18 @@ void player1Turn() // player1 choose
         if ((num9 == "x") || (num9 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player1Turn();
+            Player1Turn();
         }
         else
-        num9 = "x";
+            num9 = "x";
         k9I = 10;
     }
-    update();
-    winCheck();
+    Update();
+    WinCheck();
     DrawBoard();
 }
 
-void player2Turn()// player2 choose
+void Player2Turn()// player2 choose
 {
     DrawBoard();
     Console.Write(player2);
@@ -225,10 +254,10 @@ void player2Turn()// player2 choose
         if ((num1 == "x") || (num1 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player2Turn();
+            Player2Turn();
         }
         else
-        num1 = "o";
+            num1 = "o";
         k1I = 0;
     }
     else if (choicePlayer2 == "2")
@@ -236,10 +265,10 @@ void player2Turn()// player2 choose
         if ((num2 == "x") || (num2 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player2Turn();
+            Player2Turn();
         }
         else
-        num2 = "o";
+            num2 = "o";
         k2I = 0;
     }
     else if (choicePlayer2 == "3")
@@ -247,10 +276,10 @@ void player2Turn()// player2 choose
         if ((num3 == "x") || (num3 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player2Turn();
+            Player2Turn();
         }
         else
-        num3 = "o";
+            num3 = "o";
         k3I = 0;
     }
     else if (choicePlayer2 == "4")
@@ -258,10 +287,10 @@ void player2Turn()// player2 choose
         if ((num4 == "x") || (num4 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player2Turn();
+            Player2Turn();
         }
         else
-        num4 = "o";
+            num4 = "o";
         k4I = 0;
     }
     else if (choicePlayer2 == "5")
@@ -269,10 +298,10 @@ void player2Turn()// player2 choose
         if ((num5 == "x") || (num5 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player2Turn();
+            Player2Turn();
         }
         else
-        num5 = "o";
+            num5 = "o";
         k5I = 0;
     }
     else if (choicePlayer2 == "6")
@@ -280,10 +309,10 @@ void player2Turn()// player2 choose
         if ((num6 == "x") || (num6 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player2Turn();
+            Player2Turn();
         }
         else
-        num6 = "o";
+            num6 = "o";
         k6I = 0;
     }
     else if (choicePlayer2 == "7")
@@ -291,10 +320,10 @@ void player2Turn()// player2 choose
         if ((num7 == "x") || (num7 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player2Turn();
+            Player2Turn();
         }
         else
-        num7 = "o";
+            num7 = "o";
         k7I = 0;
     }
     else if (choicePlayer2 == "8")
@@ -302,10 +331,10 @@ void player2Turn()// player2 choose
         if ((num8 == "x") || (num8 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player2Turn();
+            Player2Turn();
         }
         else
-        num8 = "o";
+            num8 = "o";
         k8I = 0;
     }
     else if (choicePlayer2 == "9")
@@ -313,18 +342,18 @@ void player2Turn()// player2 choose
         if ((num9 == "x") || (num9 == "o"))
         {
             Console.WriteLine("Cell already occupied, please choose another");
-            player2Turn();
+            Player2Turn();
         }
         else
-        num9 = "o";
+            num9 = "o";
         k9I = 0;
     } 
     
     DrawBoard();
-    winCheck();
+    WinCheck();
 }
 
-void update()
+void Update()
 {
     aRowI = (k1I + k2I + k3I);
     bRowI = (k4I + k5I + k6I);
@@ -336,21 +365,19 @@ void update()
     öDiagonalI = (k3I + k5I + k7I);
 }
 
-void winCheck() //need to add tie condition
+void WinCheck() //need to add tie condition
 {
     if (aRowI == 30 || bRowI == 30 || cRowI == 30 || xColumnI == 30 || yColumnI == 30 || zColumnI == 30 || åDiagonalI == 30 || öDiagonalI == 30)
     {
-        Console.Write(player1);
-        Console.WriteLine(" WINS !");
+        Console.WriteLine($"{player1} WINS !");
         hasWon = true;
-        hasWonCheck(hasWon);
+        HasWonCheck(hasWon);
     }
     else if (aRowI == 0 || bRowI == 0 || cRowI == 0 || xColumnI == 0 || yColumnI == 0 || zColumnI == 0 || åDiagonalI == 0 || öDiagonalI == 0)
     {
-        Console.Write(player2);
-        Console.WriteLine(" WINS !");
+        Console.WriteLine($"{player2} WINS !");
         hasWon = true;
-        hasWonCheck(hasWon);
+        HasWonCheck(hasWon);
     }
 
     else if (k1I != 5 && k2I != 5 && k3I != 5 && k4I != 5 && k5I != 5 && k6I != 5 && k7I != 5 && k8I != 5 && k9I != 5)
@@ -361,7 +388,7 @@ void winCheck() //need to add tie condition
     
 }
 
-void hasWonCheck(bool hasWon)
+void HasWonCheck(bool hasWon)
 {
     if (hasWon);
     PlayAgain();
