@@ -38,34 +38,11 @@ string num9 = "9";
 string row3 = $"{num7} | {num8} | {num9}";
 string row2 = $"{num4} | {num5} | {num6}";
 string row1 = $"{num1} | {num2} | {num3}";
+/*replace with Array
+char[,] num = new char [3,3];*/
 
 Start();
-//update();
-// add hasWon bool to end game or loop
-/*
-//Number of players
-Console.WriteLine("Please enter the number of player 1 or 2");
-numPlayers = Convert.ToInt32(Console.ReadLine());
-numPlayers = (int)Math.Clamp((double)numPlayers, 1, 2);
-if (numPlayers == 2)
-{
-    //Players enter name
-    Console.WriteLine("Player 1, please enter your name");
-    player1 = Console.ReadLine();
-    Console.WriteLine("Player 2, please enter your name");
-    player2 = Console.ReadLine();
-}
-else
-{
-    Console.WriteLine("Player 1, please enter your name");
-    player1 = Console.ReadLine();
-    Console.WriteLine("Player 2 is HAL2000");
-    player2 = "HAL2000";
-}
 
-start();*/
-
-//Game start
 void Start()
 {
     Console.WriteLine("-- Welcome to Tic Tac Toe --");
@@ -97,8 +74,6 @@ void Start()
     letsPlay();
 }
 
-//Draw Board
-//Clear screen !
 void DrawBoard()
 {
     Console.Clear();
