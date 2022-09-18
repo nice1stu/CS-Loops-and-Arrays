@@ -50,7 +50,7 @@ static void Instructions(int playerNumber)
     Console.WriteLine("Player 1 : X");
     Console.WriteLine("Player 2 : O");
     Console.WriteLine();
-    Console.WriteLine($"Player {playerNumber} to move, select 1 - 9 on the Gameboard");
+    Console.WriteLine($"Player {playerNumber} to move, select 1 - 9 on the Game board");
     Console.WriteLine();
 }
 static int CheckWinner(char[] gameMarkers)
@@ -253,3 +253,4 @@ void EndGame() //End Game
     aiTurn = randomNum.Next(8);
     Console.WriteLine("AI chooses " + aiTurn);
 }*/
+
