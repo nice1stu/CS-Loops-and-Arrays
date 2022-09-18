@@ -1,12 +1,49 @@
 ﻿Console.WriteLine("Tic Tac Toe Beta 2");
+
+string player1;
+string player2;
+
+int gameStatus = 0;
+int currentPlayer = -1;
+char[] gameMarkers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
 StartGame();
 void StartGame()
 {
-    int gameStatus = 0;
-    int currentPlayer = -1;
-    char[] gameMarkers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-    
     //setup game
+    //Number of players
+    Console.WriteLine("Please enter the number of player 1 or 2");
+    int numPlayers = Convert.ToInt32(Console.ReadLine());
+    numPlayers = (int)Math.Clamp((double)numPlayers, 1, 2);
+    if (numPlayers == 2)
+    {
+        //Players enter name
+        Console.WriteLine("Player 1, please enter your name");
+        player1 = Console.ReadLine();
+        Console.WriteLine("Player 2, please enter your name");
+        player2 = Console.ReadLine();
+        Console.Clear();
+    }
+    else
+    {
+        Console.WriteLine("Player 1, please enter your name");
+        player1 = Console.ReadLine();
+        Console.WriteLine("Choose your difficulty level:");
+        Console.WriteLine("[1] for Easy");
+        Console.WriteLine("[2] for Hard");
+        int difficulty = Convert.ToInt32(Console.ReadLine());
+        Console.Clear();
+        if (difficulty == 1)
+        {
+            player2 = "Wall-E";
+            Console.WriteLine($"Player 2 is {player2}");
+        }
+        else
+        {
+            player2 = "HAL9000";
+            Console.WriteLine($"Player 2 is {player2}");
+        }
+    }
     //setup AI
     
     do
@@ -44,7 +81,7 @@ static void Instructions(int playerNumber)
     Console.WriteLine("Player 1 : X");
     Console.WriteLine("Player 2 : O");
     Console.WriteLine();
-    Console.WriteLine($"Player {playerNumber} to move, select 1 - 9 on the gameboard");
+    Console.WriteLine($"Player {playerNumber} to move, select 1 - 9 on the Gameboard");
     Console.WriteLine();
 }
 static int CheckWinner(char[] gameMarkers)
