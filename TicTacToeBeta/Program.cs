@@ -7,7 +7,47 @@ Console.WriteLine("Tic Tac Toe Beta 2");
 int gameStatus = 0;
 int currentPlayer = -1;
 char[] gameMarkers = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-Random randomNum = new Random();
+
+/*SetupGame(player1, player2);
+static string SetupGame(string player1, string player2)
+{
+    //Number of players
+    Console.WriteLine("Please enter the number of player 1 or 2");
+    int numPlayers = Convert.ToInt32(Console.ReadLine());
+    numPlayers = (int)Math.Clamp((double)numPlayers, 1, 2);
+    if (numPlayers == 2)
+    {
+        //Players enter name
+        Console.WriteLine("Player 1, please enter your name");
+        player1 = Console.ReadLine();
+        Console.WriteLine("Player 2, please enter your name");
+        player2 = Console.ReadLine();
+        Console.Clear();
+    }
+    else
+    {
+        Console.WriteLine("Player 1, please enter your name");
+        player1 = Console.ReadLine();
+        Console.WriteLine("Choose your difficulty level:");
+        Console.WriteLine("[1] for Easy");
+        Console.WriteLine("[2] for Hard");
+        int difficulty = Convert.ToInt32(Console.ReadLine());
+        Console.Clear();
+        if (difficulty == 1)
+        {
+            player2 = "Wall-E";
+            Console.WriteLine($"Player 2 is {player2}");
+        }
+        else
+        {
+            player2 = "HAL9000";
+            Console.WriteLine($"Player 2 is {player2}");
+        }
+    }
+
+    return player1;
+    return player2;
+}*/
 
 StartGame();
 
@@ -187,7 +227,6 @@ static int GetNextPlayer(int player) //select next player
     }
     return 1;
 }
-//void Player2AI
 void PlayAgain() //Ask Play Again
 {
     Console.WriteLine("Would you like to play again?");
@@ -210,45 +249,6 @@ void EndGame() //End Game
     Environment.Exit(0);
 }
 
-/*static string SetupGame(string player1, string player2)
-{
-    //Number of players
-    Console.WriteLine("Please enter the number of player 1 or 2");
-    int numPlayers = Convert.ToInt32(Console.ReadLine());
-    numPlayers = (int)Math.Clamp((double)numPlayers, 1, 2);
-    if (numPlayers == 2)
-    {
-        //Players enter name
-        Console.WriteLine("Player 1, please enter your name");
-        player1 = Console.ReadLine();
-        Console.WriteLine("Player 2, please enter your name");
-        player2 = Console.ReadLine();
-        Console.Clear();
-    }
-    else
-    {
-        Console.WriteLine("Player 1, please enter your name");
-        player1 = Console.ReadLine();
-        Console.WriteLine("Choose your difficulty level:");
-        Console.WriteLine("[1] for Easy");
-        Console.WriteLine("[2] for Hard");
-        int difficulty = Convert.ToInt32(Console.ReadLine());
-        Console.Clear();
-        if (difficulty == 1)
-        {
-            player2 = "Wall-E";
-            Console.WriteLine($"Player 2 is {player2}");
-        }
-        else
-        {
-            player2 = "HAL9000";
-            Console.WriteLine($"Player 2 is {player2}");
-        }
-    }
-
-    return player1;
-    return player2;
-}*/
 //setup AI
 /*{
     aiTurn = randomNum.Next(8);
