@@ -89,7 +89,7 @@ void Start()
     Console.WriteLine(" ");
     Console.WriteLine("Lets Play !");
     Console.WriteLine(" ");
-    PrintBoardArray();
+    //PrintBoardArray();
     //DrawBoard();
     //LetsPlay();
 }
@@ -146,6 +146,7 @@ void Player2Turn() // player2 choose
     Console.WriteLine(" choose the Number of the square you want to place your x");
     string choicePlayer1 = Console.ReadLine();
 }
+
 
 
 /*void DrawBoard()
