@@ -41,11 +41,14 @@ string row1 = $"{num1} | {num2} | {num3}";*/
 
 //replace with Array
 //setup initial board value
-//locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,),(0,1),(0,2)
-string[,] boardCellMarker = { { "7", "8", "9" }, { "4", "5", "6" }, { "1", "2", "3" } };
+//locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,0),(0,1),(0,2)
+char[,] boardCellMarker = { { '7', '8', '9' }, { '4', '5', '6' }, { '1', '2', '3' } };
 
 //locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,),(0,1),(0,2)
 int[,] boardCellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } };
+
+string choicePlayer1 = null;
+string choicePlayer2 = null;
 
 //print int array
 /*for(int i = 0; i < boardCellValue.GetLength(0); i++)
@@ -136,8 +139,10 @@ void Player1Turn() // player1 choose
     PrintBoardArray();
     Console.Write(player1);
     Console.WriteLine(" choose the Number of the square you want to place your x");
-    string choicePlayer1 = Console.ReadLine();
-    Console.WriteLine("You typed " + choicePlayer1); 
+    choicePlayer1 = Console.ReadLine();
+    CheckInvalidMove();
+    CheckWin();
+    CheckDraw();
 }
 
 void Player2Turn() // player2 choose
@@ -145,11 +150,66 @@ void Player2Turn() // player2 choose
     PrintBoardArray();
     Console.Write(player2);
     Console.WriteLine(" choose the Number of the square you want to place your o");
-    string choicePlayer2 = Console.ReadLine();
-    Console.WriteLine("You typed " + choicePlayer2); 
+    choicePlayer2 = Console.ReadLine();
+    CheckInvalidMove();
+    CheckWin();
+    CheckDraw();
+}
+
+void CheckInvalidMove()
+{
+    //check if square already played used nested loop to check array from 0,0 to 2,2
+    //if choicePlayer1 == boardCellMarker[0,0] && boardCellMarker[0,0] == "x" || boardCellMarker[0,0] == "o"
+    //Console.Writeline("Square already played, please choose again");
+    //Player1Turn();
+}
+
+void CheckWin()
+{
+    //check if current player has won
+    if ((boardCellMarker[0,0] == boardCellMarker[0,1]) &&  (boardCellMarker[0,1] == boardCellMarker[0,2]))
+    {
+        hasWon = true;
+    }
+    else if ((boardCellMarker[1,0] == boardCellMarker[1,1]) &&  (boardCellMarker[1,1] == boardCellMarker[1,2]))
+    {
+        hasWon = true;
+    }
+    else if ((boardCellMarker[2,0] == boardCellMarker[2,1]) &&  (boardCellMarker[2,1] == boardCellMarker[2,2]))
+    {
+        hasWon = true;
+    }
+    if ((boardCellMarker[0,0] == boardCellMarker[1,0]) &&  (boardCellMarker[1,0] == boardCellMarker[2,0]))
+    {
+        hasWon = true;
+    }
+    else if ((boardCellMarker[0,1] == boardCellMarker[1,1]) &&  (boardCellMarker[1,1] == boardCellMarker[2,1]))
+    {
+        hasWon = true;
+    }
+    else if ((boardCellMarker[0,2] == boardCellMarker[1,2]) &&  (boardCellMarker[1,2] == boardCellMarker[2,2]))
+    {
+        hasWon = true;
+    }
+    else if ((boardCellMarker[0,0] == boardCellMarker[1,1]) &&  (boardCellMarker[1,1] == boardCellMarker[2,2]))
+    {
+        hasWon = true;
+    }
+    else if ((boardCellMarker[0,2] == boardCellMarker[1,1]) &&  (boardCellMarker[1,1] == boardCellMarker[2,0]))
+    {
+        hasWon = true;
+    }
 }
 
 
+void CheckDraw()
+{
+    //check if game is draw
+    if (§)
+    {
+        
+    }
+}
 
 /*void DrawBoard()
 {
