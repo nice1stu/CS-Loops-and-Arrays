@@ -137,14 +137,16 @@ void Player1Turn() // player1 choose
     Console.Write(player1);
     Console.WriteLine(" choose the Number of the square you want to place your x");
     string choicePlayer1 = Console.ReadLine();
+    Console.WriteLine("You typed " + choicePlayer1); 
 }
 
 void Player2Turn() // player2 choose
 {
     PrintBoardArray();
     Console.Write(player2);
-    Console.WriteLine(" choose the Number of the square you want to place your x");
-    string choicePlayer1 = Console.ReadLine();
+    Console.WriteLine(" choose the Number of the square you want to place your o");
+    string choicePlayer2 = Console.ReadLine();
+    Console.WriteLine("You typed " + choicePlayer2); 
 }
 
 
