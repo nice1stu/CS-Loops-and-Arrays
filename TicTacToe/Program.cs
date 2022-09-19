@@ -96,7 +96,7 @@ void Start()
 
 void PrintBoardArray()
 {
-//print board (string array)
+//procedural generated board (string array)
     /*for (int i = 0; i < boardCellLocation.GetLength(0); i++)
     {
         for (int j = 0; j < boardCellLocation.GetLength(1); j++)
