@@ -42,7 +42,7 @@ string row1 = $"{num1} | {num2} | {num3}";*/
 //replace with Array
 //setup initial board value
 //locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,),(0,1),(0,2)
-string[,] boardCellLocation = { { "7", "8", "9" }, { "4", "5", "6" }, { "1", "2", "3" } };
+string[,] boardCellMarker = { { "7", "8", "9" }, { "4", "5", "6" }, { "1", "2", "3" } };
 
 //locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,),(0,1),(0,2)
 int[,] boardCellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } };
@@ -59,6 +59,7 @@ int[,] boardCellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } };
 
 
 Start();
+Playtime();
 
 void Start()
 {
@@ -110,12 +111,42 @@ void PrintBoardArray()
         Console.WriteLine();
     }*/
     
-    Console.WriteLine($"{boardCellLocation[2,0]} | {boardCellLocation[2,1]} | {boardCellLocation[2,2]}");
+    Console.WriteLine($"{boardCellMarker[2,0]} | {boardCellMarker[2,1]} | {boardCellMarker[2,2]}");
     Console.WriteLine("- + - + - ");
-    Console.WriteLine($"{boardCellLocation[1,0]} | {boardCellLocation[1,1]} | {boardCellLocation[1,2]}");
+    Console.WriteLine($"{boardCellMarker[1,0]} | {boardCellMarker[1,1]} | {boardCellMarker[1,2]}");
     Console.WriteLine("- + - + - ");
-    Console.WriteLine($"{boardCellLocation[0,0]} | {boardCellLocation[0,1]} | {boardCellLocation[0,2]}");
+    Console.WriteLine($"{boardCellMarker[0,0]} | {boardCellMarker[0,1]} | {boardCellMarker[0,2]}");
 }
+
+void Playtime()
+{
+    while (hasWon == false)
+    {
+        Player1Turn();
+        //Update();
+        //WinCheck();
+        Player2Turn();
+        //Update();
+        //WinCheck();
+    } 
+}
+
+void Player1Turn() // player1 choose
+{
+    PrintBoardArray();
+    Console.Write(player1);
+    Console.WriteLine(" choose the Number of the square you want to place your x");
+    string choicePlayer1 = Console.ReadLine();
+}
+
+void Player2Turn() // player2 choose
+{
+    PrintBoardArray();
+    Console.Write(player2);
+    Console.WriteLine(" choose the Number of the square you want to place your x");
+    string choicePlayer1 = Console.ReadLine();
+}
+
 /*void DrawBoard()
 {
     Console.Clear();

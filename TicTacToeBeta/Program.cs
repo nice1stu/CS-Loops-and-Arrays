@@ -1,7 +1,4 @@
-﻿Console.WriteLine("Tic Tac Toe Beta");
-Console.WriteLine("Tic Tac Toe Beta 2");
-
-//string player1 = null;
+﻿//string player1 = null;
 //string player2 = null;
 
 int gameStatus = 0;
