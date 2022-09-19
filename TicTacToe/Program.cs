@@ -205,7 +205,7 @@ void CheckWin()
 void CheckDraw()
 {
     //check if game is draw
-    if (§)
+    if ()
     {
         
     }
