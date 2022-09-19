@@ -147,6 +147,7 @@ void Player2Turn() // player2 choose
     string choicePlayer1 = Console.ReadLine();
 }
 
+
 /*void DrawBoard()
 {
     Console.Clear();
