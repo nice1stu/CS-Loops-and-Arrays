@@ -9,17 +9,19 @@ for (int i = 0; i < numbers; i++)
     giveMeNumbers[i] = userAnswers;
 }
 
-Console.WriteLine("What number are you looking for?");
+while (true)
+{
+    Console.WriteLine("What number are you looking for?");
 int searchingFor = int.Parse(Console.ReadLine());
 int howMany = 0;
 
-    for (int i = 0; i < numbers; i++)
+for (int i = 0; i < numbers; i++)
+{
+    if (searchingFor == giveMeNumbers[i])
     {
-        if (searchingFor == giveMeNumbers[i])
-        {
-            howMany++;
-        }
+        howMany++;
     }
-
-    Console.WriteLine($"I found that number {howMany} times!");
+}
+Console.WriteLine($"I found that number {howMany} times!");
+}
 
