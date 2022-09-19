@@ -142,7 +142,7 @@ void Player1Turn() // player1 choose
     choicePlayer1 = Console.ReadLine();
     CheckInvalidMove();
     CheckWin();
-    CheckDraw();
+    //CheckDraw();
 }
 
 void Player2Turn() // player2 choose
@@ -153,7 +153,7 @@ void Player2Turn() // player2 choose
     choicePlayer2 = Console.ReadLine();
     CheckInvalidMove();
     CheckWin();
-    CheckDraw();
+    //CheckDraw();
 }
 
 void CheckInvalidMove()
@@ -202,14 +202,14 @@ void CheckWin()
 }
 
 
-void CheckDraw()
+/*void CheckDraw()
 {
     //check if game is draw
     if ()
     {
         
     }
-}
+}*/
 
 /*void DrawBoard()
 {

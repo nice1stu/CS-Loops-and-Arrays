@@ -1,18 +1,24 @@
 ﻿// Tic Tac Toe
+// Setup variables & Arrays
 //--Variables--
 int numPlayers;
 
 //--Arrays--
-string[] playerNames = new string[4];
+string[] playerNames = new string[4]; //Store Player Names
 
+string[,] cellSymbol = { { "1", "2", "3" }, { "4", "5", "6" }, { "7", "8", "9" } }; //Numbers represent squares to input. Represent numPad
+//locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,0),(0,1),(0,2)
+int[,] CellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } }; //Value of each cell
 
+//Setup Game
 
 
 SetUp();
+DrawBoard();
 
 void SetUp()
 {
-
+    Console.Clear();
     Console.WriteLine("-- Welcome to Tic Tac Toe --");
 
     //Number of players
@@ -43,3 +49,17 @@ void SetUp()
     Console.WriteLine("Lets Play !");
     Console.WriteLine(" ");
 }
+
+//Drawboard
+void DrawBoard()
+{
+    Console.WriteLine($"{cellSymbol[2,0]} | {cellSymbol[2,1]} | {cellSymbol[2,2]}");
+    Console.WriteLine("- + - + - ");
+    Console.WriteLine($"{cellSymbol[1,0]} | {cellSymbol[1,1]} | {cellSymbol[1,2]}");
+    Console.WriteLine("- + - + - ");
+    Console.WriteLine($"{cellSymbol[0,0]} | {cellSymbol[0,1]} | {cellSymbol[0,2]}");
+}
+//Player input
+//check valid move
+//check win
+//check draw
