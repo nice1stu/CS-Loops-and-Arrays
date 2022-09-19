@@ -8,3 +8,18 @@ for (int i = 0; i < numbers; i++)
     int userAnswers = Convert.ToInt32(Console.ReadLine());
     giveMeNumbers[i] = userAnswers;
 }
+
+Console.WriteLine("What number are you looking for?");
+int searchingFor = int.Parse(Console.ReadLine());
+int howMany = 0;
+
+    for (int i = 0; i < numbers; i++)
+    {
+        if (searchingFor == giveMeNumbers[i])
+        {
+            howMany++;
+        }
+    }
+
+    Console.WriteLine($"I found that number {howMany} times!");
+
