@@ -6,8 +6,8 @@
 //--Variables--
 int numPlayers;
 bool validMove = true;
-bool winner = false;
-bool draw = false;
+bool gameWinner = false;
+bool gameDraw = false;
 
 //--Arrays--
 string[] playerName = new string[4]; //Store Player Names
@@ -137,58 +137,57 @@ void CheckWin()
     Console.WriteLine("Check Win");
     if (cellSymbol[0] == cellSymbol[1] && cellSymbol[1] == cellSymbol[2]) //row 0-2
     {
-        winner = true;
+        gameWinner = true;
         HasWon();
     }
 
     if (cellSymbol[3] == cellSymbol[4] && cellSymbol[4] == cellSymbol[5]) //row 3-5
     {
-        winner = true;
+        gameWinner = true;
         HasWon();
     }
 
     if (cellSymbol[6] == cellSymbol[7] && cellSymbol[7] == cellSymbol[8]) //row 6-8
     {
-        winner = true;
+        gameWinner = true;
         HasWon();
     }
 
     if (cellSymbol[0] == cellSymbol[3] && cellSymbol[3] == cellSymbol[6]) //column 0-6
     {
-        winner = true;
+        gameWinner = true;
         HasWon();
     }
 
     if (cellSymbol[1] == cellSymbol[4] && cellSymbol[4] == cellSymbol[7]) //column 1-7
     {
-        winner = true;
+        gameWinner = true;
         HasWon();
     }
 
     if (cellSymbol[2] == cellSymbol[5] && cellSymbol[5] == cellSymbol[8]) //column 2-8
     {
-        winner = true;
+        gameWinner = true;
         HasWon();
     }
 
     if (cellSymbol[0] == cellSymbol[4] && cellSymbol[4] == cellSymbol[8]) //Diagonal 0-8
     {
-        winner = true;
+        gameWinner = true;
         HasWon();
     }
 
     if (cellSymbol[2] == cellSymbol[4] && cellSymbol[4] == cellSymbol[6]) //Diagonal 2-6
     {
-        winner = true;
+        gameWinner = true;
         HasWon();
     }
 }
 
-
 //Has won
 void HasWon()
 {
-    if (winner)
+    if (gameWinner)
     {
         Console.WriteLine("You Won !");
         PlayAgain();
@@ -199,8 +198,19 @@ void HasWon()
 void CheckDraw()
 {
     Console.WriteLine("Check Draw");
+    if (cellSymbol[0] != "1" && cellSymbol[1] != "2" && cellSymbol[2] != "3" && cellSymbol[3] != "4" && cellSymbol[4] != "5" && cellSymbol[5] != "6" && cellSymbol[6] != "7" && cellSymbol[7] != "8" && cellSymbol[8] != "9")
+    {
+        gameDraw = true;
+        HasDrawn();
+    }
 }
 
+//Has drawn
+void HasDrawn()
+{
+    Console.WriteLine("Game is a draw");
+    PlayAgain();
+}
 
 //Play Again
 void PlayAgain()
@@ -211,7 +221,7 @@ void PlayAgain()
     if (playAgain == 1)
     {
         Console.Clear();
-        winner = false;
+        gameWinner = false;
         SetUp();
     }
     else

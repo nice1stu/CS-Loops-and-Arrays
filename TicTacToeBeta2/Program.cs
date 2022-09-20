@@ -96,7 +96,6 @@ int CheckForWinner()
     return 0;
 }
 
-
 //print board
 void PrintBoard()
 {
