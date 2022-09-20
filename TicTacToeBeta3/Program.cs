@@ -12,7 +12,7 @@ bool gameDraw = false;
 //--Arrays--
 string[] playerName = new string[4]; //Store Player Names
 string[] playerSymbol = { "X", "O" }; //Player Symbols to use. PLayer 1 [0] = X, Player 2 & AI [1,2,3] = O
-string[] cellSymbol = new string[9];//{ "1", "2", "3", "4", "5", "6", "7", "8", "9"}; //Numbers represent squares to input. Represent numPad}
+string[] cellSymbol = { "1", "2", "3", "4", "5", "6", "7", "8", "9"}; //Numbers represent squares to input. Represent numPad}
 //locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,0),(0,1),(0,2)
 int[,] cellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } }; //Value of each cell
 
@@ -29,15 +29,6 @@ void SetUp()
 {
     Console.Clear();
     Console.WriteLine("-- Welcome to Tic Tac Toe --");
-    cellSymbol[0] = "1";//re-write cellsymbols back to starting number values
-    cellSymbol[1] = "2";
-    cellSymbol[2] = "3";
-    cellSymbol[3] = "4";
-    cellSymbol[4] = "5";
-    cellSymbol[5] = "6";
-    cellSymbol[6] = "7";
-    cellSymbol[7] = "8";
-    cellSymbol[8] = "9";
 
     //Number of players
     Console.WriteLine("Please enter the number of player 1 or 2");
