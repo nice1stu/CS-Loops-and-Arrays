@@ -1,4 +1,7 @@
 ﻿// Tic Tac Toe
+
+
+
 // Setup variables & Arrays
 //--Variables--
 int numPlayers;
@@ -11,7 +14,7 @@ string[] playerName = new string[4]; //Store Player Names
 string[] playerSymbol = { "X", "O" }; //Player Symbols to use. PLayer 1 [0] = X, Player 2 & AI [1,2,3] = O
 string[] cellSymbol = { "1", "2", "3", "4", "5", "6", "7", "8", "9"}; //Numbers represent squares to input. Represent numPad
 //locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,0),(0,1),(0,2)
-int[,] CellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } }; //Value of each cell
+int[,] cellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } }; //Value of each cell
 
 
 
@@ -174,17 +177,18 @@ void CheckWin()
         HasWon();
     }
 
-    if (cellSymbol[2] == cellSymbol[4] && cellSymbol[4] == cellSymbol[86]) //Diagonal 2-6
+    if (cellSymbol[2] == cellSymbol[4] && cellSymbol[4] == cellSymbol[6]) //Diagonal 2-6
     {
         winner = true;
         HasWon();
     }
 }
 
+
 //Has won
 void HasWon()
 {
-    if (winner == true)
+    if (winner)
     {
         Console.WriteLine("You Won !");
         PlayAgain();
@@ -208,7 +212,7 @@ void PlayAgain()
     {
         Console.Clear();
         winner = false;
-        //Start();
+        SetUp();
     }
     else
     {
