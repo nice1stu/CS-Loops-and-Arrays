@@ -2,6 +2,9 @@
 // Setup variables & Arrays
 //--Variables--
 int numPlayers;
+bool validMove = true;
+bool winner = false;
+bool draw = false;
 
 //--Arrays--
 string[] playerName = new string[4]; //Store Player Names
@@ -77,18 +80,18 @@ void PlayerMove()
 
         for (int i = 0; i < cellSymbol.Length; i++) //write player symbol to cell
         {
-            while (player1Choice == cellSymbol[i])
+            if (player1Choice == cellSymbol[i])
             {
                 //CheckValidMove
-                while (cellSymbol[i] == "X" || cellSymbol[i] == "O") 
-                {
-                    Console.WriteLine("Invalid move, cell already played. Please choose again");
-                }
+                CheckValidMove();
                 cellSymbol[i] = playerSymbol[playerTurn];//cellsymbol replaced with playerSymbol
+                CheckWin();
+                CheckDraw();
+                Console.WriteLine(player1Choice + cellSymbol[i]);
             }
         }
-        //CheckWin
-        //CheckDraw
+
+
         
         DrawBoard();
         
@@ -96,14 +99,16 @@ void PlayerMove()
         playerTurn = 1;
         Console.WriteLine($"{playerName[playerTurn]}  choose the Number of the square you want to place your {playerSymbol[playerTurn]}");
         string player2Choice = Console.ReadLine();
-        //CheckValidMove
-        //CheckWin
-        //CheckDraw
+
         for (int i = 0; i < cellSymbol.Length; i++) //write player symbol to cell
         {
             if (player2Choice == cellSymbol[i])
             {
+                CheckValidMove();
                 cellSymbol[i] = playerSymbol[playerTurn];
+                CheckWin();
+                CheckDraw();
+                Console.WriteLine(player2Choice + cellSymbol[i]);
             }
         }
 
@@ -114,8 +119,26 @@ void PlayerMove()
 
 PlayAgain();
 //check valid move
+void CheckValidMove()
+{
+    Console.WriteLine("Check Valid Move");
+    /*if (cellSymbol[i] == "X" || cellSymbol[i] == "O")
+    {
+        Console.WriteLine("Invalid move, cell already played. Please choose again");
+    }*/
+}
+
 //check win
+void CheckWin()
+{
+    Console.WriteLine("Check Win");
+}
 //check draw
+void CheckDraw()
+{
+    Console.WriteLine("Check Draw");
+}
+
 
 //Play Again
 void PlayAgain()
