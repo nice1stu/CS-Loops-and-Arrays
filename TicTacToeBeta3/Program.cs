@@ -74,17 +74,24 @@ void PlayerMove()
         Console.WriteLine($"{playerName[playerTurn]}  choose the Number of the square you want to place your {playerSymbol[playerTurn]}");
         string player1Choice = Console.ReadLine();
 
-        //CheckWin
-        //CheckDraw
+
         for (int i = 0; i < cellSymbol.Length; i++) //write player symbol to cell
         {
-            if (player1Choice == cellSymbol[i])
+            while (player1Choice == cellSymbol[i])
             {
-                cellSymbol[i] = playerSymbol[playerTurn];
+                //CheckValidMove
+                while (cellSymbol[i] == "X" || cellSymbol[i] == "O") 
+                {
+                    Console.WriteLine("Invalid move, cell already played. Please choose again");
+                }
+                cellSymbol[i] = playerSymbol[playerTurn];//cellsymbol replaced with playerSymbol
             }
         }
-
+        //CheckWin
+        //CheckDraw
+        
         DrawBoard();
+        
         //player2
         playerTurn = 1;
         Console.WriteLine($"{playerName[playerTurn]}  choose the Number of the square you want to place your {playerSymbol[playerTurn]}");
