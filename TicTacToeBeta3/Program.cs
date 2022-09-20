@@ -10,12 +10,15 @@ string[] cellSymbol = { "1", "2", "3", "4", "5", "6", "7", "8", "9"}; //Numbers 
 //locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,0),(0,1),(0,2)
 int[,] CellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } }; //Value of each cell
 
-//Setup Game
+
 
 
 SetUp();
 DrawBoard();
+PlayerMove();
 
+
+//Setup Game
 void SetUp()
 {
     Console.Clear();
@@ -61,43 +64,72 @@ void DrawBoard()
 }
 
 //Player moves
-while (true)
+void PlayerMove()
 {
-    //player1
-    int playerTurn = 0;
-    Console.WriteLine($"{playerName[playerTurn]}  choose the Number of the square you want to place your {playerSymbol[playerTurn]}");
-    string player1Choice = Console.ReadLine();
-//CheckValidMove
-//CheckWin
-//CheckDraw
-    for (int i = 0; i < cellSymbol.Length; i++)//write player symbol to cell
+    //while (true)
+    for (int turnCount = 0; turnCount < 9; turnCount++)
     {
-        if (player1Choice == cellSymbol[i])
-        {
-            cellSymbol[i] = playerSymbol[playerTurn];
-        }
-    }
-    DrawBoard();
-//player2
-    playerTurn = 1;
-    Console.WriteLine($"{playerName[playerTurn]}  choose the Number of the square you want to place your {playerSymbol[playerTurn]}");
-    string player2Choice = Console.ReadLine();
-//CheckValidMove
-//CheckWin
-//CheckDraw
-    for (int i = 0; i < cellSymbol.Length; i++)//write player symbol to cell
-    {
-        if (player2Choice == cellSymbol[i])
-        {
-            cellSymbol[i] = playerSymbol[playerTurn];
-        }
-    }
-    DrawBoard();
+        //player1
+        int playerTurn = 0;
+        Console.WriteLine($"{playerName[playerTurn]}  choose the Number of the square you want to place your {playerSymbol[playerTurn]}");
+        string player1Choice = Console.ReadLine();
 
+        //CheckWin
+        //CheckDraw
+        for (int i = 0; i < cellSymbol.Length; i++) //write player symbol to cell
+        {
+            if (player1Choice == cellSymbol[i])
+            {
+                cellSymbol[i] = playerSymbol[playerTurn];
+            }
+        }
+
+        DrawBoard();
+        //player2
+        playerTurn = 1;
+        Console.WriteLine($"{playerName[playerTurn]}  choose the Number of the square you want to place your {playerSymbol[playerTurn]}");
+        string player2Choice = Console.ReadLine();
+        //CheckValidMove
+        //CheckWin
+        //CheckDraw
+        for (int i = 0; i < cellSymbol.Length; i++) //write player symbol to cell
+        {
+            if (player2Choice == cellSymbol[i])
+            {
+                cellSymbol[i] = playerSymbol[playerTurn];
+            }
+        }
+
+        DrawBoard();
+
+    }
 }
 
-
-
+PlayAgain();
 //check valid move
 //check win
 //check draw
+
+//Play Again
+void PlayAgain()
+{
+    Console.WriteLine("Would you like to play again?");
+    Console.WriteLine("[1] for YES : [2] for NO");
+    int playAgain = Convert.ToInt32(Console.ReadLine());
+    if (playAgain == 1)
+    {
+        Console.Clear();
+        //Start();
+    }
+    else
+    {
+        Console.Clear();
+        EndGame();
+    }
+}
+//End Game
+void EndGame()
+{
+    Console.WriteLine("Thanks for Playing");
+    Environment.Exit(0);
+}
