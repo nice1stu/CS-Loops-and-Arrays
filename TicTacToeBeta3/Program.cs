@@ -135,57 +135,59 @@ void CheckWin()
     if (cellSymbol[0] == cellSymbol[1] && cellSymbol[1] == cellSymbol[2]) //row 0-2
     {
         winner = true;
-        Console.WriteLine(winner);
-        Console.WriteLine("Winner !");
+        HasWon();
     }
 
     if (cellSymbol[3] == cellSymbol[4] && cellSymbol[4] == cellSymbol[5]) //row 3-5
     {
         winner = true;
-        Console.WriteLine(winner);
-        Console.WriteLine("Winner !");
+        HasWon();
     }
 
     if (cellSymbol[6] == cellSymbol[7] && cellSymbol[7] == cellSymbol[8]) //row 6-8
     {
         winner = true;
-        Console.WriteLine(winner);
-        Console.WriteLine("Winner !");
+        HasWon();
     }
 
     if (cellSymbol[0] == cellSymbol[3] && cellSymbol[3] == cellSymbol[6]) //column 0-6
     {
         winner = true;
-        Console.WriteLine(winner);
-        Console.WriteLine("Winner !");
+        HasWon();
     }
 
     if (cellSymbol[1] == cellSymbol[4] && cellSymbol[4] == cellSymbol[7]) //column 1-7
     {
         winner = true;
-        Console.WriteLine(winner);
-        Console.WriteLine("Winner !");
+        HasWon();
     }
 
     if (cellSymbol[2] == cellSymbol[5] && cellSymbol[5] == cellSymbol[8]) //column 2-8
     {
         winner = true;
-        Console.WriteLine(winner);
-        Console.WriteLine("Winner !");
+        HasWon();
     }
 
     if (cellSymbol[0] == cellSymbol[4] && cellSymbol[4] == cellSymbol[8]) //Diagonal 0-8
     {
         winner = true;
-        Console.WriteLine(winner);
-        Console.WriteLine("Winner !");
+        HasWon();
     }
 
     if (cellSymbol[2] == cellSymbol[4] && cellSymbol[4] == cellSymbol[86]) //Diagonal 2-6
     {
         winner = true;
-        Console.WriteLine(winner);
-        Console.WriteLine("Winner !");
+        HasWon();
+    }
+}
+
+//Has won
+void HasWon()
+{
+    if (winner == true)
+    {
+        Console.WriteLine("You Won !");
+        PlayAgain();
     }
 }
 
@@ -205,6 +207,7 @@ void PlayAgain()
     if (playAgain == 1)
     {
         Console.Clear();
+        winner = false;
         //Start();
     }
     else
