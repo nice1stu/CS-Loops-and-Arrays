@@ -30,15 +30,13 @@ PrintXYGrid();
 void PrintXYGrid()
 {
     Console.WriteLine("Y");
-    for (int x = 0; x < 5; x++)
+    for (int y = 0; y < 5; y++)
     {
-        Console.Write($"{4-x}");
-        for (int y = 0; y < 5; y++)
+        Console.Write($"{4-y}");
+        for (int x = 0; x < 5; x++)
         {
-
-            Console.Write($" {paintToolArray[x,y]}");
+            Console.Write($"{paintToolArray[x,y]}");
         }
-        
         Console.WriteLine();
     }
     Console.Write("\\");
