@@ -1,4 +1,6 @@
-﻿//--X- TicTacToe -O--
+﻿//TicTacToe Beta4
+//Start again with 2D arrays
+
 //declare & initialize
 char[,] gameBoard = new Char[3,3];
 char[] playerSymbol = {'X','O'}; //Player Symbols to use. PLayer 1 [0] = X, Player 2 & AI [1,2,3] = O
@@ -7,21 +9,23 @@ int gameMarker = 0;
 string[] playerName = new string[4]; //Store Player Names
 int numPlayers;
 bool gameWinner = false;
-//bool gameDraw = false;
+bool gameDraw = false;
+int currentPlayer = 1;
 
 SetUp();
 
 //game mechanic !
 while (true) // invalid move if square occupied
 {
-    PlayerTurn1();
+    currentPlayer = (currentPlayer + 1) % 2;
+    PlayerTurn();
     DrawBoard();
     CheckWin();
     CheckDraw();
-    PlayerTurn2();
-    DrawBoard();
-    CheckWin();
-    CheckDraw();
+    //PlayerTurn2();
+    //DrawBoard();
+    //CheckWin();
+    //CheckDraw();
 }
 
 //Setup Game
@@ -79,10 +83,10 @@ void DrawBoard()
     Console.WriteLine("   [0] [1] [2]");
 }
 
-void PlayerTurn1()//make into 1 method
+void PlayerTurn()
 {
     PlayerInput:
-    Console.Write($"{playerName[0]} ");
+    Console.Write($"{playerName[currentPlayer]} ");
     Console.WriteLine("enter where you want to play along X axis");
     int playerChoiceX = Convert.ToInt32(Console.ReadLine());
     if (playerChoiceX !=0 && playerChoiceX !=1 && playerChoiceX !=2)
@@ -105,11 +109,11 @@ void PlayerTurn1()//make into 1 method
     }
     else
     {
-        gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[0];
+        gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
     }
 }
 
-void PlayerTurn2()//make into 1 method
+/*void PlayerTurn2()//make into 1 method
 {
     PlayerInput:
     Console.Write($"{playerName[1]} ");
@@ -135,12 +139,11 @@ void PlayerTurn2()//make into 1 method
     {
         gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[1];
     }
-}
+}*/
 
 //check win
 void CheckWin()
 {
-    Console.WriteLine("Check Win");
     if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0]) //row 0-2
     {
         gameWinner = true;
@@ -205,7 +208,7 @@ void CheckDraw()
 {
     if (gameBoard[0,0] != '1' && gameBoard[1,0] != '2' && gameBoard[2,0] != '3' && gameBoard[0,1] != '4' && gameBoard[1,1] != '5' && gameBoard[2,1] != '6' && gameBoard[0,2] != '7' && gameBoard[1,2] != '8' && gameBoard[2,2] != '9')
     {
-        //gameDraw = true;
+        gameDraw = true;
         HasDrawn();
     }
 }
