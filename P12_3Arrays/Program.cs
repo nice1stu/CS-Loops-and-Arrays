@@ -19,7 +19,7 @@ for (int y = 0; y < 5; y++)
 {
     for (int x = 0; x < 5; x++)
     {
-        paintToolArray[x, y] = " ";
+        paintToolArray[x, y] = "!";
     }
 }
 
@@ -32,19 +32,20 @@ void PrintXYGrid()
     Console.WriteLine("Y");
     for (int y = 0; y < 5; y++)
     {
+
         Console.Write($"{4-y}");
         for (int x = 0; x < 5; x++)
         {
-            Console.Write($"{paintToolArray[x,y]}");
+            Console.Write($"{paintToolArray[x,(4-y)]}");
         }
         Console.WriteLine();
-    }
+        }
     Console.Write("\\");
     for (int x = 0; x < 5; x++)
     {
-        Console.Write(" " + x);
+        Console.Write(x);
     }
-    Console.Write(" X");
+    Console.Write("X");
 }
 
 //get user input for symbol and position on array
