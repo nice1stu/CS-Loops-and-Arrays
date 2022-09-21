@@ -200,7 +200,7 @@ void HasWon()
     if (gameWinner)
     {
         Console.WriteLine("You Won !");
-        //PlayAgain();
+        PlayAgain();
     }
 }
 
@@ -218,7 +218,31 @@ void CheckDraw()
 void HasDrawn()
 {
     Console.WriteLine("Game is a draw");
-    //PlayAgain();
+    PlayAgain();
 }
 
-//PlayAgain()
+//Play Again
+void PlayAgain()
+{
+    Console.WriteLine("Would you like to play again?");
+    Console.WriteLine("[1] for YES : [2] for NO");
+    int playAgain = Convert.ToInt32(Console.ReadLine());
+    if (playAgain == 1)
+    {
+        Console.Clear();
+        gameWinner = false;
+        SetUp();
+    }
+    else
+    {
+        Console.Clear();
+        EndGame();
+    }
+}
+
+//End Game
+void EndGame()
+{
+    Console.WriteLine("Thanks for Playing");
+    Environment.Exit(0);
+}
