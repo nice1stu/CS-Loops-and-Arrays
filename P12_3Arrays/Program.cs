@@ -9,15 +9,42 @@
 //Store the symbol at the correct index of the two dimensional array
 
 char[,] paintToolArray = new char[5,5];
+int getXcordinate;
+int getYcordinate;
+string getsymbol;
 
+
+//initialize all values of array
 for (int y = 0; y < 5; y++)
 {
-    Console.WriteLine(4-y);
+    for (int x = 0; x < 5; x++)
+    {
+        paintToolArray[x, y] = '¤';
+    }
 }
 
-Console.Write("\\");
-    
-for (int x = 0; x < 5; x++)
+PrintXYGrid();
+
+//print X, Y Axis
+void PrintXYGrid()
 {
-    Console.Write(" "+x);
+    for (int y = 0; y < 5; y++)
+    {
+        Console.WriteLine(4 - y);
+    }
+
+    Console.Write("\\");
+
+    for (int x = 0; x < 5; x++)
+    {
+        Console.Write(" " + x);
+    }
 }
+
+Console.WriteLine();
+Console.WriteLine("Give me a X coordinate.");
+getXcordinate = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Give me a Y coordinate.");
+getYcordinate = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Give me a symbol to place.");
+getsymbol = Console.ReadLine();
