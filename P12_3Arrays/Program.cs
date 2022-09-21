@@ -9,3 +9,13 @@
 //Store the symbol at the correct index of the two dimensional array
 
 char[,] paintToolArray = new char[5,5];
+
+for (int y = 0; y < 5; y++)
+{
+    Console.WriteLine(4-y);
+}
+
+for (int x = 0; x < 5; x++)
+{
+    Console.Write(x);
+}
