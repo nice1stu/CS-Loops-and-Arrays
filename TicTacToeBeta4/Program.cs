@@ -11,6 +11,9 @@ int numPlayers;
 bool gameWinner = false;
 bool gameDraw = false;
 int currentPlayer = 1;
+int playerChoiceX = 0;
+int playerChoiceY = 0;
+string playerInput;
 
 SetUp();
 
@@ -71,20 +74,21 @@ void DrawBoard()
 {
     Console.Clear();
     Console.WriteLine();
-    Console.WriteLine($"[2] {gameBoard[0,2]} | {gameBoard[1,2]} | {gameBoard[2,2]}");
-    Console.WriteLine("    - + - + -");
-    Console.WriteLine($"[1] {gameBoard[0,1]} | {gameBoard[1,1]} | {gameBoard[2,1]}");
-    Console.WriteLine("    - + - + - ");
-    Console.WriteLine($"[0] {gameBoard[0,0]} | {gameBoard[1,0]} | {gameBoard[2,0]}");
-    Console.WriteLine("   [0] [1] [2]");
+    Console.WriteLine($" {gameBoard[0,2]} | {gameBoard[1,2]} | {gameBoard[2,2]}");
+    Console.WriteLine(" - + - + -");
+    Console.WriteLine($" {gameBoard[0,1]} | {gameBoard[1,1]} | {gameBoard[2,1]}");
+    Console.WriteLine(" - + - + - ");
+    Console.WriteLine($" {gameBoard[0,0]} | {gameBoard[1,0]} | {gameBoard[2,0]}");
+    Console.WriteLine();
 }
 
 //Player Turn
 void PlayerTurn()
 {
     PlayerInput:
-    Console.Write($"{playerName[currentPlayer]} ");
-    Console.WriteLine("enter where you want to play along X axis");
+    Console.Write($"{playerName[currentPlayer]} press the Num key you want to play");
+    NumKeyInput();
+    /*Console.WriteLine("enter where you want to play along X axis");
     int playerChoiceX = Convert.ToInt32(Console.ReadLine());
     if (playerChoiceX !=0 && playerChoiceX !=1 && playerChoiceX !=2)
     {
@@ -97,7 +101,7 @@ void PlayerTurn()
     {
         Console.WriteLine("invalid input");
         goto PlayerInput;
-    }
+    }*/
 
     if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
     {
@@ -167,7 +171,7 @@ void HasWon()
 {
     if (gameWinner)
     {
-        Console.WriteLine("You Won !");
+        Console.WriteLine($"{playerName[currentPlayer]} Wins !");
         PlayAgain();
     }
 }
@@ -213,4 +217,56 @@ void EndGame()
 {
     Console.WriteLine("Thanks for Playing");
     Environment.Exit(0);
+}
+
+//Use humber key for input
+void NumKeyInput()
+{
+    Console.WriteLine($"{playerName[currentPlayer]} press the Num where you want to play");
+    string playerInput = Console.ReadLine();
+    if (playerInput == "1")
+    {
+        playerChoiceX = 0;
+        playerChoiceY = 0;
+    }
+    if (playerInput == "2")
+    {
+        playerChoiceX = 1;
+        playerChoiceY = 0;
+    }
+    if (playerInput == "3")
+    {
+        playerChoiceX = 2;
+        playerChoiceY = 0;
+    }
+    if (playerInput == "4")
+    {
+        playerChoiceX = 0;
+        playerChoiceY = 1;
+    }
+    if (playerInput == "5")
+    {
+        playerChoiceX = 1;
+        playerChoiceY = 1;
+    }
+    if (playerInput == "6")
+    {
+        playerChoiceX = 2;
+        playerChoiceY = 1;
+    }
+    if (playerInput == "7")
+    {
+        playerChoiceX = 0;
+        playerChoiceY = 2;
+    }
+    if (playerInput == "8")
+    {
+        playerChoiceX = 1;
+        playerChoiceY = 2;
+    }
+    if (playerInput == "9")
+    {
+        playerChoiceX = 2;
+        playerChoiceY = 2;
+    }
 }
