@@ -8,6 +8,7 @@ bool invalidMove = false;
 int gameMarker = 0;
 string[] playerName = new string[4]; //Store Player Names
 int numPlayers;
+bool gameWinner = false;
 
 
 
@@ -16,6 +17,9 @@ SetUp();
 //Setup Game
 void SetUp()
 {
+    gameBoard[0, 0] = '1'; gameBoard[1, 0] = '2'; gameBoard[2, 0] = '3';
+    gameBoard[0, 1] = '4'; gameBoard[1, 1] = '5'; gameBoard[2, 1] = '6';
+    gameBoard[0, 2] = '7'; gameBoard[1, 2] = '8'; gameBoard[2, 2] = '9';
     Console.Clear();
     Console.WriteLine("-- Welcome to Tic Tac Toe --");
 
@@ -47,6 +51,7 @@ void SetUp()
         Console.WriteLine(" ");
         Console.WriteLine("Lets Play !");
         Console.WriteLine(" ");
+        DrawBoard();
     }
 }
 
@@ -56,8 +61,10 @@ while (true) // invalid move if square occupied
 {
     PlayerTurn1();
     DrawBoard();
+    CheckWin();
     PlayerTurn2();
     DrawBoard();
+    CheckWin();
 }
 
 //Drawboard
@@ -128,5 +135,68 @@ void PlayerTurn2()//make into 1 method
     }
     {
         gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[1];
+    }
+}
+
+//check win
+void CheckWin()
+{
+    Console.WriteLine("Check Win");
+    if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0]) //row 0-2
+    {
+        gameWinner = true;
+        HasWon();
+    }
+
+    if (gameBoard[0,1] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,1]) //row 3-5
+    {
+        gameWinner = true;
+        HasWon();
+    }
+
+    if (gameBoard[0,2] == gameBoard[1,2] && gameBoard[1,2] == gameBoard[2,2]) //row 6-8
+    {
+        gameWinner = true;
+        HasWon();
+    }
+
+    if (gameBoard[0,0] == gameBoard[0,1] && gameBoard[0,1] == gameBoard[0,2]) //column 0-6
+    {
+        gameWinner = true;
+        HasWon();
+    }
+
+    if (gameBoard[1,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[1,2]) //column 1-7
+    {
+        gameWinner = true;
+        HasWon();
+    }
+
+    if (gameBoard[2,0] == gameBoard[2,1] && gameBoard[2,1] == gameBoard[2,2]) //column 2-8
+    {
+        gameWinner = true;
+        HasWon();
+    }
+
+    if (gameBoard[0,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,2]) //Diagonal 0-8
+    {
+        gameWinner = true;
+        HasWon();
+    }
+
+    if (gameBoard[0,2] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,0]) //Diagonal 2-6
+    {
+        gameWinner = true;
+        HasWon();
+    }
+}
+
+//Has won
+void HasWon()
+{
+    if (gameWinner)
+    {
+        Console.WriteLine("You Won !");
+        //PlayAgain();
     }
 }
