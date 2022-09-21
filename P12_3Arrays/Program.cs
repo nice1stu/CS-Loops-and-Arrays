@@ -19,5 +19,5 @@ Console.Write("\\");
     
 for (int x = 0; x < 5; x++)
 {
-    Console.Write(x);
+    Console.Write(" "+x);
 }
