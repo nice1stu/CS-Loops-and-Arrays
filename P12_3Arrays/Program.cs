@@ -19,7 +19,7 @@ for (int y = 0; y < 5; y++)
 {
     for (int x = 0; x < 5; x++)
     {
-        paintToolArray[x, y] = "¤";
+        paintToolArray[x, y] = " ";
     }
 }
 
@@ -29,24 +29,15 @@ PrintXYGrid();
 //print X, Y Axis
 void PrintXYGrid()
 {
-    /*for (int y = 0; y < 5; y++)
-    {
-        Console.Write($"{4 - y}\n");
-    }
-
-    Console.Write("\\");
-
     for (int x = 0; x < 5; x++)
     {
-        Console.Write(" " + x);
-    }*/
-    for (int y = 0; y < 5; y++)
-    {
-        Console.Write($"{4 - y}");
-        for (int x = 0; x < 5; x++)
+        Console.Write($"{4-x}");
+        for (int y = 0; y < 5; y++)
         {
+
             Console.Write($" {paintToolArray[x,y]}");
         }
+        
         Console.WriteLine();
     }
     Console.Write("\\");
