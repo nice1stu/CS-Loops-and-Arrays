@@ -26,9 +26,10 @@ for (int y = 0; y < 5; y++)
 UserInput();
 PrintXYGrid();
 
-//print X, Y Axis
+//print paintToolArray
 void PrintXYGrid()
 {
+    Console.WriteLine("Y");
     for (int x = 0; x < 5; x++)
     {
         Console.Write($"{4-x}");
@@ -45,8 +46,8 @@ void PrintXYGrid()
     {
         Console.Write(" " + x);
     }
+    Console.Write(" X");
 }
-
 
 //get user input for symbol and position on array
 void UserInput()
