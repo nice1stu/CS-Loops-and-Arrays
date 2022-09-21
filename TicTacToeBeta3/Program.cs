@@ -29,13 +29,13 @@ void SetUp()
 {
     Console.Clear();
     Console.WriteLine("-- Welcome to Tic Tac Toe --");
-
+/*
     //Number of players
     Console.WriteLine("Please enter the number of player 1 or 2");
     numPlayers = Convert.ToInt32(Console.ReadLine());
     numPlayers = (int)Math.Clamp((double)numPlayers, 1, 2);
     if (numPlayers == 2)
-    {
+    {*/
         //Players enter name
         for (int i = 0; i < 2; i++)
         {
@@ -43,17 +43,17 @@ void SetUp()
             string playerAnswer = Console.ReadLine();
             playerName[i] = playerAnswer;
         }
-
+/*
     }
     else
     {
         Console.WriteLine("Player 1, please enter your name");
         string playerAnswer = Console.ReadLine();
         playerName[0] = playerAnswer;
-        Console.WriteLine("Player 2 is HAL2000");
-        playerName[2] = "HAL2000";
+        Console.WriteLine("Player 2 is WALL-E");
+        playerName[2] = "WALL-E";
     }
-
+*/
     Console.WriteLine(" ");
     Console.WriteLine("Lets Play !");
     Console.WriteLine(" ");
@@ -62,6 +62,7 @@ void SetUp()
 //Drawboard
 void DrawBoard()
 {
+    Console.Clear();
     Console.WriteLine();
     Console.WriteLine($"{cellSymbol[6]} | {cellSymbol[7]} | {cellSymbol[8]}");
     Console.WriteLine("- + - + - ");
@@ -81,11 +82,16 @@ void PlayerMove()
         Console.WriteLine($"{playerName[playerTurn]}  choose the Number of the square you want to place your {playerSymbol[playerTurn]}");
         string player1Choice = Console.ReadLine();
 
+        
 
         for (int i = 0; i < cellSymbol.Length; i++) //write player symbol to cell
         {
             if (player1Choice == cellSymbol[i])
             {
+                while (player1Choice != cellSymbol[i])
+                {
+            
+                }
                 //CheckValidMove
                 CheckValidMove();
                 cellSymbol[i] = playerSymbol[playerTurn];//cellsymbol replaced with playerSymbol
