@@ -10,10 +10,23 @@ string[] playerName = new string[4]; //Store Player Names
 int numPlayers;
 bool gameWinner = false;
 bool gameDraw = false;
-
-
+int currentPlayer = 1;
 
 SetUp();
+
+//game mechanic !
+while (true) // invalid move if square occupied
+{
+    currentPlayer = (currentPlayer + 1) % 2;
+    PlayerTurn();
+    DrawBoard();
+    CheckWin();
+    CheckDraw();
+    //PlayerTurn2();
+    //DrawBoard();
+    //CheckWin();
+    //CheckDraw();
+}
 
 //Setup Game
 void SetUp()
@@ -22,7 +35,8 @@ void SetUp()
     gameBoard[0, 1] = '4'; gameBoard[1, 1] = '5'; gameBoard[2, 1] = '6';
     gameBoard[0, 2] = '7'; gameBoard[1, 2] = '8'; gameBoard[2, 2] = '9';
     Console.Clear();
-    Console.WriteLine("-- Welcome to Tic Tac Toe --");
+    Console.WriteLine("--X- Welcome to TicTacToe -O--");
+    Console.WriteLine("     - by Stewart Wan -");
 
     //Number of players
     Console.WriteLine("Please enter the number of player 1 or 2");
@@ -56,20 +70,6 @@ void SetUp()
     }
 }
 
-
-//game mechanic !
-while (true) // invalid move if square occupied
-{
-    PlayerTurn1();
-    DrawBoard();
-    CheckWin();
-    CheckDraw();
-    PlayerTurn2();
-    DrawBoard();
-    CheckWin();
-    CheckDraw();
-}
-
 //Drawboard
 void DrawBoard()
 {
@@ -83,10 +83,10 @@ void DrawBoard()
     Console.WriteLine("   [0] [1] [2]");
 }
 
-void PlayerTurn1()//make into 1 method
+void PlayerTurn()
 {
     PlayerInput:
-    Console.Write($"{playerName[0]} ");
+    Console.Write($"{playerName[currentPlayer]} ");
     Console.WriteLine("enter where you want to play along X axis");
     int playerChoiceX = Convert.ToInt32(Console.ReadLine());
     if (playerChoiceX !=0 && playerChoiceX !=1 && playerChoiceX !=2)
@@ -109,11 +109,11 @@ void PlayerTurn1()//make into 1 method
     }
     else
     {
-        gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[0];
+        gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
     }
 }
 
-void PlayerTurn2()//make into 1 method
+/*void PlayerTurn2()//make into 1 method
 {
     PlayerInput:
     Console.Write($"{playerName[1]} ");
@@ -139,12 +139,11 @@ void PlayerTurn2()//make into 1 method
     {
         gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[1];
     }
-}
+}*/
 
 //check win
 void CheckWin()
 {
-    Console.WriteLine("Check Win");
     if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0]) //row 0-2
     {
         gameWinner = true;

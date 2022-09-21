@@ -1,74 +1,39 @@
-﻿// TicTacToe
-
+﻿//--X- TicTacToe -O--
+//declare & initialize
+char[,] gameBoard = new Char[3,3];
+char[] playerSymbol = {'X','O'}; //Player Symbols to use. PLayer 1 [0] = X, Player 2 & AI [1,2,3] = O
+bool invalidMove = false;
+int gameMarker = 0;
+string[] playerName = new string[4]; //Store Player Names
 int numPlayers;
-string player1;
-string player2;
-bool hasWon = false;
-// assign player1 = x, assign player2 = o
-//int x = 10;
-//int o = 0;
-//What value is stored
-/*int k1I = 5;
-int k2I = 5;
-int k3I = 5;
-int k4I = 5;
-int k5I = 5;
-int k6I = 5;
-int k7I = 5;
-int k8I = 5;
-int k9I = 5;*/
-int aRowI;
-int bRowI;
-int cRowI;
-int xColumnI;
-int yColumnI;
-int zColumnI;
-int åDiagonalI;
-int öDiagonalI;
-// What value is shown
-/*string num1 = "1";
-string num2 = "2";
-string num3 = "3";
-string num4 = "4";
-string num5 = "5";
-string num6 = "6";
-string num7 = "7";
-string num8 = "8";
-string num9 = "9";*/
-/*string row3 = $"{num7} | {num8} | {num9}";
-string row2 = $"{num4} | {num5} | {num6}";
-string row1 = $"{num1} | {num2} | {num3}";*/
+bool gameWinner = false;
+//bool gameDraw = false;
 
-//replace with Array
-//setup initial board value
-//locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,0),(0,1),(0,2)
-char[,] boardCellMarker = { { '7', '8', '9' }, { '4', '5', '6' }, { '1', '2', '3' } };
+SetUp();
 
-//locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,),(0,1),(0,2)
-int[,] boardCellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } };
-
-string choicePlayer1 = null;
-string choicePlayer2 = null;
-
-//print int array
-/*for(int i = 0; i < boardCellValue.GetLength(0); i++)
+//game mechanic !
+while (true) // invalid move if square occupied
 {
-    for (int j = 0; j < boardCellValue.GetLength(1); j++)
-    {
-        Console.Write(boardCellValue[i, j] + " ");
-    }
-    Console.WriteLine();
-}*/
+    PlayerTurn1();
+    DrawBoard();
+    CheckWin();
+    CheckDraw();
+    PlayerTurn2();
+    DrawBoard();
+    CheckWin();
+    CheckDraw();
+}
 
-
-Start();
-Playtime();
-
-void Start()
+//Setup Game
+void SetUp()
 {
-    
-    Console.WriteLine("-- Welcome to Tic Tac Toe --");
-    
+    gameBoard[0, 0] = '1'; gameBoard[1, 0] = '2'; gameBoard[2, 0] = '3';
+    gameBoard[0, 1] = '4'; gameBoard[1, 1] = '5'; gameBoard[2, 1] = '6';
+    gameBoard[0, 2] = '7'; gameBoard[1, 2] = '8'; gameBoard[2, 2] = '9';
+    Console.Clear();
+    Console.WriteLine("--X- Welcome to TicTacToe -O--");
+    Console.WriteLine("     - by Stewart Wan -");
+
     //Number of players
     Console.WriteLine("Please enter the number of player 1 or 2");
     numPlayers = Convert.ToInt32(Console.ReadLine());
@@ -76,432 +41,183 @@ void Start()
     if (numPlayers == 2)
     {
         //Players enter name
-        Console.WriteLine("Player 1, please enter your name");
-        player1 = Console.ReadLine();
-        Console.WriteLine("Player 2, please enter your name");
-        player2 = Console.ReadLine();
+        for (int i = 0; i < 2; i++)
+        {
+            Console.WriteLine($"Player {i + 1}, please enter your name");
+            string playerAnswer = Console.ReadLine();
+            playerName[i] = playerAnswer;
+        }
+
+/*
     }
     else
     {
         Console.WriteLine("Player 1, please enter your name");
-        player1 = Console.ReadLine();
-        Console.WriteLine("Player 2 is HAL2000");
-        player2 = "HAL2000";
+        string playerAnswer = Console.ReadLine();
+        playerName[0] = playerAnswer;
+        Console.WriteLine("Player 2 is WALL-E");
+        playerName[2] = "WALL-E";
     }
-
-    Console.WriteLine(" ");
-    Console.WriteLine("Lets Play !");
-    Console.WriteLine(" ");
-    //PrintBoardArray();
-    //DrawBoard();
-    //LetsPlay();
-}
-
-void PrintBoardArray()
-{
-//procedural generated board (string array)
-    /*for (int i = 0; i < boardCellLocation.GetLength(0); i++)
-    {
-        for (int j = 0; j < boardCellLocation.GetLength(1); j++)
-        {
-            Console.Write("|" + boardCellLocation[i, j] + "|");
-        }
-        Console.WriteLine();
-        for (int j = 0; j < boardCellLocation.GetLength(1); j++)
-        {
-            Console.Write("---");
-        }
-        Console.WriteLine();
-    }*/
-    
-    Console.WriteLine($"{boardCellMarker[2,0]} | {boardCellMarker[2,1]} | {boardCellMarker[2,2]}");
-    Console.WriteLine("- + - + - ");
-    Console.WriteLine($"{boardCellMarker[1,0]} | {boardCellMarker[1,1]} | {boardCellMarker[1,2]}");
-    Console.WriteLine("- + - + - ");
-    Console.WriteLine($"{boardCellMarker[0,0]} | {boardCellMarker[0,1]} | {boardCellMarker[0,2]}");
-}
-
-void Playtime()
-{
-    while (hasWon == false)
-    {
-        Player1Turn();
-        //Update();
-        //WinCheck();
-        Player2Turn();
-        //Update();
-        //WinCheck();
-    } 
-}
-
-void Player1Turn() // player1 choose
-{
-    PrintBoardArray();
-    Console.Write(player1);
-    Console.WriteLine(" choose the Number of the square you want to place your x");
-    choicePlayer1 = Console.ReadLine();
-    CheckInvalidMove();
-    CheckWin();
-    //CheckDraw();
-}
-
-void Player2Turn() // player2 choose
-{
-    PrintBoardArray();
-    Console.Write(player2);
-    Console.WriteLine(" choose the Number of the square you want to place your o");
-    choicePlayer2 = Console.ReadLine();
-    CheckInvalidMove();
-    CheckWin();
-    //CheckDraw();
-}
-
-void CheckInvalidMove()
-{
-    //check if square already played used nested loop to check array from 0,0 to 2,2
-    //if choicePlayer1 == boardCellMarker[0,0] && boardCellMarker[0,0] == "x" || boardCellMarker[0,0] == "o"
-    //Console.Writeline("Square already played, please choose again");
-    //Player1Turn();
-}
-
-void CheckWin()
-{
-    //check if current player has won
-    if ((boardCellMarker[0,0] == boardCellMarker[0,1]) &&  (boardCellMarker[0,1] == boardCellMarker[0,2]))
-    {
-        hasWon = true;
-    }
-    else if ((boardCellMarker[1,0] == boardCellMarker[1,1]) &&  (boardCellMarker[1,1] == boardCellMarker[1,2]))
-    {
-        hasWon = true;
-    }
-    else if ((boardCellMarker[2,0] == boardCellMarker[2,1]) &&  (boardCellMarker[2,1] == boardCellMarker[2,2]))
-    {
-        hasWon = true;
-    }
-    if ((boardCellMarker[0,0] == boardCellMarker[1,0]) &&  (boardCellMarker[1,0] == boardCellMarker[2,0]))
-    {
-        hasWon = true;
-    }
-    else if ((boardCellMarker[0,1] == boardCellMarker[1,1]) &&  (boardCellMarker[1,1] == boardCellMarker[2,1]))
-    {
-        hasWon = true;
-    }
-    else if ((boardCellMarker[0,2] == boardCellMarker[1,2]) &&  (boardCellMarker[1,2] == boardCellMarker[2,2]))
-    {
-        hasWon = true;
-    }
-    else if ((boardCellMarker[0,0] == boardCellMarker[1,1]) &&  (boardCellMarker[1,1] == boardCellMarker[2,2]))
-    {
-        hasWon = true;
-    }
-    else if ((boardCellMarker[0,2] == boardCellMarker[1,1]) &&  (boardCellMarker[1,1] == boardCellMarker[2,0]))
-    {
-        hasWon = true;
+*/
+        Console.WriteLine(" ");
+        Console.WriteLine("Lets Play !");
+        Console.WriteLine(" ");
+        DrawBoard();
     }
 }
 
-
-/*void CheckDraw()
-{
-    //check if game is draw
-    if ()
-    {
-        
-    }
-}*/
-
-/*void DrawBoard()
+//Drawboard
+void DrawBoard()
 {
     Console.Clear();
-    //string row3 = $"{num7} | {num8} | {num9}";
-    //string row2 = $"{num4} | {num5} | {num6}";
-    //string row1 = $"{num1} | {num2} | {num3}";
-
-    Console.WriteLine(row3);
-    Console.WriteLine("- | - | - ");
-    Console.WriteLine(row2);
-    Console.WriteLine("- | - | - ");
-    Console.WriteLine(row1);
+    Console.WriteLine();
+    Console.WriteLine($"[2] {gameBoard[0,2]} | {gameBoard[1,2]} | {gameBoard[2,2]}");
+    Console.WriteLine("    - + - + -");
+    Console.WriteLine($"[1] {gameBoard[0,1]} | {gameBoard[1,1]} | {gameBoard[2,1]}");
+    Console.WriteLine("    - + - + - ");
+    Console.WriteLine($"[0] {gameBoard[0,0]} | {gameBoard[1,0]} | {gameBoard[2,0]}");
+    Console.WriteLine("   [0] [1] [2]");
 }
 
-void LetsPlay()
+void PlayerTurn1()//make into 1 method
 {
-    while (hasWon == false)
+    PlayerInput:
+    Console.Write($"{playerName[0]} ");
+    Console.WriteLine("enter where you want to play along X axis");
+    int playerChoiceX = Convert.ToInt32(Console.ReadLine());
+    if (playerChoiceX !=0 && playerChoiceX !=1 && playerChoiceX !=2)
     {
-        Player1Turn();
-        Update();
-        WinCheck();
-        Player2Turn();
-        Update();
-        WinCheck();
+        Console.WriteLine("invalid input");
+        goto PlayerInput;
+    }
+    Console.WriteLine("enter where you want to play along Y axis");
+    int playerChoiceY = Convert.ToInt32(Console.ReadLine());
+    if (playerChoiceY !=0 && playerChoiceY !=1 && playerChoiceY !=2)
+    {
+        Console.WriteLine("invalid input");
+        goto PlayerInput;
+    }
+
+    if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
+    {
+        Console.WriteLine("Cell has been played, please select another cell");
+        goto PlayerInput;
+    }
+    else
+    {
+        gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[0];
     }
 }
 
-void Player1Turn() // player1 choose
+void PlayerTurn2()//make into 1 method
 {
-    DrawBoard();
-    Console.Write(player1);
-    Console.WriteLine(" choose the Number of the square you want to place your x");
-    string choicePlayer1 = Console.ReadLine();
-
-    if (choicePlayer1 == "1")
+    PlayerInput:
+    Console.Write($"{playerName[1]} ");
+    Console.WriteLine("enter where you want to play along X axis");
+    int playerChoiceX = Convert.ToInt32(Console.ReadLine());
+    if (playerChoiceX !=0 && playerChoiceX !=1 && playerChoiceX !=2)
     {
-        if ((num1 == "x") || (num1 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player1Turn();
-        }
-        else
-            num1 = "x";
-        k1I = 10;
+        Console.WriteLine("invalid input");
+        goto PlayerInput;
     }
-    else if (choicePlayer1 == "2")
-    {        
-        if ((num2 == "x") || (num2 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player1Turn();
-        }
-        else
-            num2 = "x";
-        k2I = 10;
-
-    }
-    else if (choicePlayer1 == "3")
+    Console.WriteLine("enter where you want to play along Y axis");
+    int playerChoiceY = Convert.ToInt32(Console.ReadLine());
+    if (playerChoiceY !=0 && playerChoiceY !=1 && playerChoiceY !=2)
     {
-        if ((num3 == "x") || (num3 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player1Turn();
-        }
-        else
-            num3 = "x";
-        k3I = 10;
+        Console.WriteLine("invalid input");
+        goto PlayerInput;
     }
-    else if (choicePlayer1 == "4")
+    if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
     {
-        if ((num4 == "x") || (num4 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player1Turn();
-        }
-        else
-            num2 = "x";
-        k4I = 10;
+        Console.WriteLine("Cell has been played, please select another cell");
+        goto PlayerInput;
     }
-    else if (choicePlayer1 == "5")
     {
-        if ((num5 == "x") || (num5 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player1Turn();
-        }
-        else
-            num5 = "x";
-        k5I = 10;
+        gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[1];
     }
-    else if (choicePlayer1 == "6")
-    {
-        if ((num6 == "x") || (num6 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player1Turn();
-        }
-        else
-            num6 = "x";
-        k6I = 10;
-    }
-    else if (choicePlayer1 == "7")
-    {
-        if ((num7 == "x") || (num7 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player1Turn();
-        }
-        else
-            num7 = "x";
-        k7I = 10;
-    }
-    else if (choicePlayer1 == "8")
-    {
-        if ((num8 == "x") || (num8 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player1Turn();
-        }
-        else
-            num8 = "x";
-        k8I = 10;
-    }
-    else if (choicePlayer1 == "9")
-    {
-        if ((num9 == "x") || (num9 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player1Turn();
-        }
-        else
-            num9 = "x";
-        k9I = 10;
-    }
-    Update();
-    WinCheck();
-    DrawBoard();
 }
 
-void Player2Turn()// player2 choose
+//check win
+void CheckWin()
 {
-    DrawBoard();
-    Console.Write(player2);
-    Console.WriteLine(" choose the Number of the square you want to place your o");
-    string choicePlayer2 = Console.ReadLine();
-    // if occupied if cell = 0 or 10, choose another
-    if (choicePlayer2 == "1")
+    Console.WriteLine("Check Win");
+    if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0]) //row 0-2
     {
-        if ((num1 == "x") || (num1 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player2Turn();
-        }
-        else
-            num1 = "o";
-        k1I = 0;
+        gameWinner = true;
+        HasWon();
     }
-    else if (choicePlayer2 == "2")
+
+    if (gameBoard[0,1] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,1]) //row 3-5
     {
-        if ((num2 == "x") || (num2 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player2Turn();
-        }
-        else
-            num2 = "o";
-        k2I = 0;
+        gameWinner = true;
+        HasWon();
     }
-    else if (choicePlayer2 == "3")
+
+    if (gameBoard[0,2] == gameBoard[1,2] && gameBoard[1,2] == gameBoard[2,2]) //row 6-8
     {
-        if ((num3 == "x") || (num3 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player2Turn();
-        }
-        else
-            num3 = "o";
-        k3I = 0;
+        gameWinner = true;
+        HasWon();
     }
-    else if (choicePlayer2 == "4")
+
+    if (gameBoard[0,0] == gameBoard[0,1] && gameBoard[0,1] == gameBoard[0,2]) //column 0-6
     {
-        if ((num4 == "x") || (num4 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player2Turn();
-        }
-        else
-            num4 = "o";
-        k4I = 0;
+        gameWinner = true;
+        HasWon();
     }
-    else if (choicePlayer2 == "5")
+
+    if (gameBoard[1,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[1,2]) //column 1-7
     {
-        if ((num5 == "x") || (num5 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player2Turn();
-        }
-        else
-            num5 = "o";
-        k5I = 0;
+        gameWinner = true;
+        HasWon();
     }
-    else if (choicePlayer2 == "6")
+
+    if (gameBoard[2,0] == gameBoard[2,1] && gameBoard[2,1] == gameBoard[2,2]) //column 2-8
     {
-        if ((num6 == "x") || (num6 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player2Turn();
-        }
-        else
-            num6 = "o";
-        k6I = 0;
+        gameWinner = true;
+        HasWon();
     }
-    else if (choicePlayer2 == "7")
+
+    if (gameBoard[0,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,2]) //Diagonal 0-8
     {
-        if ((num7 == "x") || (num7 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player2Turn();
-        }
-        else
-            num7 = "o";
-        k7I = 0;
+        gameWinner = true;
+        HasWon();
     }
-    else if (choicePlayer2 == "8")
+
+    if (gameBoard[0,2] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,0]) //Diagonal 2-6
     {
-        if ((num8 == "x") || (num8 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player2Turn();
-        }
-        else
-            num8 = "o";
-        k8I = 0;
+        gameWinner = true;
+        HasWon();
     }
-    else if (choicePlayer2 == "9")
-    {
-        if ((num9 == "x") || (num9 == "o"))
-        {
-            Console.WriteLine("Cell already occupied, please choose another");
-            Player2Turn();
-        }
-        else
-            num9 = "o";
-        k9I = 0;
-    } 
-    
-    DrawBoard();
-    WinCheck();
 }
 
-void Update()
+//Has won
+void HasWon()
 {
-    aRowI = (k1I + k2I + k3I);
-    bRowI = (k4I + k5I + k6I);
-    cRowI = (k7I + k8I + k9I);
-    xColumnI = (k1I + k4I + k7I);
-    yColumnI = (k2I + k5I + k8I);
-    zColumnI = (k3I + k6I + k9I);
-    åDiagonalI = (k1I + k5I + k9I);
-    öDiagonalI = (k3I + k5I + k7I);
-}
-
-void WinCheck() //need to add tie condition
-{
-    if (aRowI == 30 || bRowI == 30 || cRowI == 30 || xColumnI == 30 || yColumnI == 30 || zColumnI == 30 || åDiagonalI == 30 || öDiagonalI == 30)
+    if (gameWinner)
     {
-        Console.WriteLine($"{player1} WINS !");
-        hasWon = true;
-        HasWonCheck(hasWon);
-    }
-    else if (aRowI == 0 || bRowI == 0 || cRowI == 0 || xColumnI == 0 || yColumnI == 0 || zColumnI == 0 || åDiagonalI == 0 || öDiagonalI == 0)
-    {
-        Console.WriteLine($"{player2} WINS !");
-        hasWon = true;
-        HasWonCheck(hasWon);
-    }
-
-    else if (k1I != 5 && k2I != 5 && k3I != 5 && k4I != 5 && k5I != 5 && k6I != 5 && k7I != 5 && k8I != 5 && k9I != 5)
-    {
-        Console.WriteLine("It's a Draw !");
+        Console.WriteLine("You Won !");
         PlayAgain();
     }
-    
-}*/
+}
 
-void HasWonCheck(bool hasWon)
+//check draw
+void CheckDraw()
 {
-    if (hasWon);
+    if (gameBoard[0,0] != '1' && gameBoard[1,0] != '2' && gameBoard[2,0] != '3' && gameBoard[0,1] != '4' && gameBoard[1,1] != '5' && gameBoard[2,1] != '6' && gameBoard[0,2] != '7' && gameBoard[1,2] != '8' && gameBoard[2,2] != '9')
+    {
+        //gameDraw = true;
+        HasDrawn();
+    }
+}
+
+//Has drawn
+void HasDrawn()
+{
+    Console.WriteLine("Game is a draw");
     PlayAgain();
 }
 
+//Play Again
 void PlayAgain()
 {
     Console.WriteLine("Would you like to play again?");
@@ -510,7 +226,8 @@ void PlayAgain()
     if (playAgain == 1)
     {
         Console.Clear();
-        Start();
+        gameWinner = false;
+        SetUp();
     }
     else
     {
