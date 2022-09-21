@@ -9,6 +9,7 @@ int gameMarker = 0;
 string[] playerName = new string[4]; //Store Player Names
 int numPlayers;
 bool gameWinner = false;
+bool gameDraw = false;
 
 
 
@@ -62,9 +63,11 @@ while (true) // invalid move if square occupied
     PlayerTurn1();
     DrawBoard();
     CheckWin();
+    CheckDraw();
     PlayerTurn2();
     DrawBoard();
     CheckWin();
+    CheckDraw();
 }
 
 //Drawboard
@@ -200,3 +203,22 @@ void HasWon()
         //PlayAgain();
     }
 }
+
+//check draw
+void CheckDraw()
+{
+    if (gameBoard[0,0] != '1' && gameBoard[1,0] != '2' && gameBoard[2,0] != '3' && gameBoard[0,1] != '4' && gameBoard[1,1] != '5' && gameBoard[2,1] != '6' && gameBoard[0,2] != '7' && gameBoard[1,2] != '8' && gameBoard[2,2] != '9')
+    {
+        gameDraw = true;
+        HasDrawn();
+    }
+}
+
+//Has drawn
+void HasDrawn()
+{
+    Console.WriteLine("Game is a draw");
+    //PlayAgain();
+}
+
+//PlayAgain()
