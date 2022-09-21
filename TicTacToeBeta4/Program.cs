@@ -22,10 +22,6 @@ while (true) // invalid move if square occupied
     DrawBoard();
     CheckWin();
     CheckDraw();
-    //PlayerTurn2();
-    //DrawBoard();
-    //CheckWin();
-    //CheckDraw();
 }
 
 //Setup Game
@@ -70,7 +66,7 @@ void SetUp()
     }
 }
 
-//Drawboard
+//Draw board
 void DrawBoard()
 {
     Console.Clear();
@@ -83,6 +79,7 @@ void DrawBoard()
     Console.WriteLine("   [0] [1] [2]");
 }
 
+//Player Turn
 void PlayerTurn()
 {
     PlayerInput:
@@ -112,34 +109,6 @@ void PlayerTurn()
         gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
     }
 }
-
-/*void PlayerTurn2()//make into 1 method
-{
-    PlayerInput:
-    Console.Write($"{playerName[1]} ");
-    Console.WriteLine("enter where you want to play along X axis");
-    int playerChoiceX = Convert.ToInt32(Console.ReadLine());
-    if (playerChoiceX !=0 && playerChoiceX !=1 && playerChoiceX !=2)
-    {
-        Console.WriteLine("invalid input");
-        goto PlayerInput;
-    }
-    Console.WriteLine("enter where you want to play along Y axis");
-    int playerChoiceY = Convert.ToInt32(Console.ReadLine());
-    if (playerChoiceY !=0 && playerChoiceY !=1 && playerChoiceY !=2)
-    {
-        Console.WriteLine("invalid input");
-        goto PlayerInput;
-    }
-    if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
-    {
-        Console.WriteLine("Cell has been played, please select another cell");
-        goto PlayerInput;
-    }
-    {
-        gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[1];
-    }
-}*/
 
 //check win
 void CheckWin()
