@@ -15,6 +15,8 @@ for (int y = 0; y < 5; y++)
     Console.WriteLine(4-y);
 }
 
+Console.Write("\\");
+    
 for (int x = 0; x < 5; x++)
 {
     Console.Write(x);
