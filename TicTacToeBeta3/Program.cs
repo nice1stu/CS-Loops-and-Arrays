@@ -12,7 +12,7 @@ bool gameDraw = false;
 //--Arrays--
 string[] playerName = new string[4]; //Store Player Names
 string[] playerSymbol = { "X", "O" }; //Player Symbols to use. PLayer 1 [0] = X, Player 2 & AI [1,2,3] = O
-string[] cellSymbol = { "1", "X", "3", "4", "5", "6", "7", "8", "9"}; //Numbers represent squares to input. Represent numPad}
+string[] cellSymbol = { "1", "2", "3", "4", "5", "6", "7", "8", "9"}; //Numbers represent squares to input. Represent numPad}
 //locations (2,0),(2,1),(2,2) | (1,0),(1,1),(1,2) | (0,0),(0,1),(0,2)
 int[,] cellValue = { { 5, 5, 5 }, { 5, 5, 5 }, { 5, 5, 5 } }; //Value of each cell
 
