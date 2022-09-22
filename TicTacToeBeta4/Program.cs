@@ -2,7 +2,7 @@
 
 //declare & initialize
 char[,] gameBoard = new Char[3,3];
-char[] playerSymbol = {'X','O'}; //Player Symbols to use. PLayer 1 [0] = X, Player 2 & AI [1,2,3] = O
+char[] playerSymbol = {'X','O','Ö'}; //Player Symbols to use. PLayer 1 [0] = X, Player 2 & AI [1,2,3] = O
 bool invalidMove = false;
 int gameMarker = 0;
 string[] playerName = new string[4]; //Store Player Names
@@ -16,14 +16,45 @@ string playerInput;
 
 SetUp();
 
-//Lets Play (2Player)! - for now create separate for 1 player ? AI
-while (true) // invalid move if square occupied
+/*Lets Play (2Player)!
+void TwoPlayersGame()
 {
-    currentPlayer = (currentPlayer + 1) % 2;
-    PlayerTurn();
-    DrawBoard();
-    CheckWin();
-    CheckDraw();
+    while (true) // invalid move if square occupied
+    {
+        currentPlayer = (currentPlayer + 1) % 2;
+        PlayerTurn();
+        DrawBoard();
+        CheckWin();
+        CheckDraw();
+    }
+}*/
+
+//Lets Play
+void LetsPlay()
+{
+    while (true) // invalid move if square occupied
+    {
+        if (numPlayers == 2)
+        {
+            currentPlayer = (currentPlayer + 1) % 2;
+            PlayerTurn();
+        }
+        else
+        {
+            currentPlayer = (currentPlayer + 1) % 2;
+            if (currentPlayer == 0)
+            {
+                PlayerTurn();
+            }
+            else
+            {
+                BaymaxTurn();
+            }
+        }
+        DrawBoard();
+        CheckWin();
+        CheckDraw();
+    }
 }
 
 //Setup Game
@@ -51,21 +82,24 @@ void SetUp()
             playerName[i] = playerAnswer;
         }
 
-/*
+        Console.WriteLine(" ");
+        Console.WriteLine("Lets Play !");
+        Console.WriteLine(" ");
+        DrawBoard();
+        LetsPlay();
     }
     else
     {
         Console.WriteLine("Player 1, please enter your name");
         string playerAnswer = Console.ReadLine();
         playerName[0] = playerAnswer;
-        Console.WriteLine("Player 2 is WALL-E");
-        playerName[2] = "WALL-E";
-    }
-*/
+        Console.WriteLine("Player 2 is Baymax");
+        playerName[1] = "Baymax";
         Console.WriteLine(" ");
         Console.WriteLine("Lets Play !");
         Console.WriteLine(" ");
         DrawBoard();
+        LetsPlay();
     }
 }
 
@@ -86,7 +120,7 @@ void DrawBoard()
 void PlayerTurn()
 {
     PlayerInput:
-    Console.Write($"{playerName[currentPlayer]} press the Num key you want to play");
+    //Console.Write($"{playerName[currentPlayer]} press the Num key you want to play");
     NumKeyInput();
 
     if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
@@ -262,11 +296,11 @@ void BaymaxTurn()
     PlayerInput:
     playerChoiceX = random.Next(0, 3);
     playerChoiceY = random.Next(0, 3);
-    if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
+    if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
     {
         Console.WriteLine("Cell has been played, please select another cell");
         goto PlayerInput;
     }
     Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
-    gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
+    gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
 }
