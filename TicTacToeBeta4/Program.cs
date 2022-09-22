@@ -16,7 +16,7 @@ string playerInput;
 
 SetUp();
 
-//game mechanic !
+//Lets Play (2Player)! - for now create separate for 1 player ? AI
 while (true) // invalid move if square occupied
 {
     currentPlayer = (currentPlayer + 1) % 2;
@@ -87,20 +87,6 @@ void PlayerTurn()
     PlayerInput:
     Console.Write($"{playerName[currentPlayer]} press the Num key you want to play");
     NumKeyInput();
-    /*Console.WriteLine("enter where you want to play along X axis");
-    int playerChoiceX = Convert.ToInt32(Console.ReadLine());
-    if (playerChoiceX !=0 && playerChoiceX !=1 && playerChoiceX !=2)
-    {
-        Console.WriteLine("invalid input");
-        goto PlayerInput;
-    }
-    Console.WriteLine("enter where you want to play along Y axis");
-    int playerChoiceY = Convert.ToInt32(Console.ReadLine());
-    if (playerChoiceY !=0 && playerChoiceY !=1 && playerChoiceY !=2)
-    {
-        Console.WriteLine("invalid input");
-        goto PlayerInput;
-    }*/
 
     if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
     {
