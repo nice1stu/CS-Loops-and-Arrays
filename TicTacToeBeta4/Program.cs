@@ -94,10 +94,7 @@ void PlayerTurn()
         Console.WriteLine("Cell has been played, please select another cell");
         goto PlayerInput;
     }
-    else
-    {
-        gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
-    }
+    gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
 }
 
 //check win
@@ -255,4 +252,21 @@ void NumKeyInput()
         playerChoiceX = 2;
         playerChoiceY = 2;
     }
+}
+
+//Single Player Methods
+//Random Gen numbers
+void BaymaxTurn()
+{
+    Random random = new Random();
+    PlayerInput:
+    playerChoiceX = random.Next(0, 3);
+    playerChoiceY = random.Next(0, 3);
+    if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
+    {
+        Console.WriteLine("Cell has been played, please select another cell");
+        goto PlayerInput;
+    }
+    Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+    gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
 }
