@@ -2,7 +2,7 @@
 
 //declare & initialize
 char[,] gameBoard = new Char[3,3];
-char[] playerSymbol = {'X','O','Ö'}; //Player Symbols to use. PLayer 1 [0] = X, Player 2 & AI [1,2,3] = O
+char[] playerSymbol = {'X','O','Ö'};
 bool invalidMove = false;
 int gameMarker = 0;
 string[] playerName = new string[4]; //Store Player Names
@@ -19,7 +19,7 @@ SetUp();
 //Lets Play
 void LetsPlay()
 {
-    GameOn://while (true)
+    GameOn:
     {
         if (numPlayers == 2)
         {
@@ -57,8 +57,15 @@ void SetUp()
     Console.WriteLine("     - by Stewart Wan -");
 
     //Number of players
+    Player2Play:
     Console.WriteLine("Please enter the number of player 1 or 2");
-    numPlayers = Convert.ToInt32(Console.ReadLine());
+    string userInput = Console.ReadLine();
+    if ((userInput != "1") && (userInput != "2"))
+    {
+        Console.WriteLine("Invalid input.");
+        goto Player2Play;
+    }
+    numPlayers = Convert.ToInt32(userInput);
     numPlayers = (int)Math.Clamp((double)numPlayers, 1, 2);
     if (numPlayers == 2)
     {
@@ -81,7 +88,7 @@ void SetUp()
         Console.WriteLine("Player 1, please enter your name");
         string playerAnswer = Console.ReadLine();
         playerName[0] = playerAnswer;
-        Console.WriteLine("Player 2 is Baymax");
+        Console.WriteLine("Player 2 is your friendly medical robot Baymax");
         playerName[1] = "Baymax";
         Console.WriteLine(" ");
         Console.WriteLine("Lets Play !");
