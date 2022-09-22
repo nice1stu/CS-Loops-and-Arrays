@@ -2,8 +2,8 @@
 
 //declare & initialize
 char[,] gameBoard = new Char[3,3];
-char[] playerSymbol = {'X','O'}; //Player Symbols to use. PLayer 1 [0] = X, Player 2 & AI [1,2,3] = O
-bool invalidMove = false;
+char[] playerSymbol = {'X','O','Ö'};
+//bool invalidMove = false;
 int gameMarker = 0;
 string[] playerName = new string[4]; //Store Player Names
 int numPlayers;
@@ -16,19 +16,39 @@ string playerInput;
 
 SetUp();
 
-//game mechanic !
-while (true) // invalid move if square occupied
+//Lets Play
+void LetsPlay()
 {
-    currentPlayer = (currentPlayer + 1) % 2;
-    PlayerTurn();
-    DrawBoard();
-    CheckWin();
-    CheckDraw();
+    GameOn:
+    {
+        if (numPlayers == 2)
+        {
+            currentPlayer = (currentPlayer + 1) % 2;
+            PlayerTurn();
+        }
+        else
+        {
+            currentPlayer = (currentPlayer + 1) % 2;
+            if (currentPlayer == 0)
+            {
+                PlayerTurn();
+            }
+            else
+            {
+                BaymaxTurn();
+            }
+        }
+        DrawBoard();
+        CheckWin();
+        CheckDraw();
+        goto GameOn;
+    }
 }
 
 //Setup Game
 void SetUp()
 {
+    //reset gameBoard array values
     gameBoard[0, 0] = '1'; gameBoard[1, 0] = '2'; gameBoard[2, 0] = '3';
     gameBoard[0, 1] = '4'; gameBoard[1, 1] = '5'; gameBoard[2, 1] = '6';
     gameBoard[0, 2] = '7'; gameBoard[1, 2] = '8'; gameBoard[2, 2] = '9';
@@ -37,8 +57,15 @@ void SetUp()
     Console.WriteLine("     - by Stewart Wan -");
 
     //Number of players
+    Player2Play:
     Console.WriteLine("Please enter the number of player 1 or 2");
-    numPlayers = Convert.ToInt32(Console.ReadLine());
+    string userInput = Console.ReadLine();
+    if ((userInput != "1") && (userInput != "2"))
+    {
+        Console.WriteLine("Invalid input.");
+        goto Player2Play;
+    }
+    numPlayers = Convert.ToInt32(userInput);
     numPlayers = (int)Math.Clamp((double)numPlayers, 1, 2);
     if (numPlayers == 2)
     {
@@ -54,6 +81,21 @@ void SetUp()
         Console.WriteLine("Lets Play !");
         Console.WriteLine(" ");
         DrawBoard();
+        LetsPlay();
+    }
+    else
+    {
+        Console.WriteLine("Player 1, please enter your name");
+        string playerAnswer = Console.ReadLine();
+        playerName[0] = playerAnswer;
+        Console.WriteLine("Player 2 is your friendly medical robot Baymax");
+        Thread.Sleep(3000);
+        playerName[1] = "Baymax";
+        Console.WriteLine(" ");
+        Console.WriteLine("Lets Play !");
+        Console.WriteLine(" ");
+        DrawBoard();
+        LetsPlay();
     }
 }
 
@@ -74,66 +116,63 @@ void DrawBoard()
 void PlayerTurn()
 {
     PlayerInput:
-    Console.Write($"{playerName[currentPlayer]} press the Num key you want to play");
+    //Console.Write($"{playerName[currentPlayer]} press the Num key you want to play");
     NumKeyInput();
-    
+
     if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
     {
         Console.WriteLine("Cell has been played, please select another cell");
         goto PlayerInput;
     }
-    else
-    {
-        gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
-    }
+    gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
 }
 
 //check win
 void CheckWin()
 {
-    if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0])
+    if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0]) //row 0-2
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,1] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,1])
+    if (gameBoard[0,1] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,1]) //row 3-5
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,2] == gameBoard[1,2] && gameBoard[1,2] == gameBoard[2,2])
+    if (gameBoard[0,2] == gameBoard[1,2] && gameBoard[1,2] == gameBoard[2,2]) //row 6-8
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,0] == gameBoard[0,1] && gameBoard[0,1] == gameBoard[0,2])
+    if (gameBoard[0,0] == gameBoard[0,1] && gameBoard[0,1] == gameBoard[0,2]) //column 0-6
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[1,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[1,2])
+    if (gameBoard[1,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[1,2]) //column 1-7
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[2,0] == gameBoard[2,1] && gameBoard[2,1] == gameBoard[2,2])
+    if (gameBoard[2,0] == gameBoard[2,1] && gameBoard[2,1] == gameBoard[2,2]) //column 2-8
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,2])
+    if (gameBoard[0,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,2]) //Diagonal 0-8
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,2] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,0])
+    if (gameBoard[0,2] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,0]) //Diagonal 2-6
     {
         gameWinner = true;
         HasWon();
@@ -243,4 +282,22 @@ void NumKeyInput()
         playerChoiceX = 2;
         playerChoiceY = 2;
     }
+}
+
+//Single Player Methods
+//Random Gen numbers
+void BaymaxTurn()
+{
+    Random random = new Random();
+    PlayerInput:
+    playerChoiceX = random.Next(0, 3);
+    playerChoiceY = random.Next(0, 3);
+    if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+    {
+        Console.WriteLine("Cell has been played, please select another cell");
+        goto PlayerInput;
+    }
+    Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+    gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+    Thread.Sleep(2000);
 }

@@ -3,7 +3,7 @@
 //declare & initialize
 char[,] gameBoard = new Char[3,3];
 char[] playerSymbol = {'X','O','Ö'};
-bool invalidMove = false;
+//bool invalidMove = false;
 int gameMarker = 0;
 string[] playerName = new string[4]; //Store Player Names
 int numPlayers;
