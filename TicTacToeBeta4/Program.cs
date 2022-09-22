@@ -89,6 +89,7 @@ void SetUp()
         string playerAnswer = Console.ReadLine();
         playerName[0] = playerAnswer;
         Console.WriteLine("Player 2 is your friendly medical robot Baymax");
+        Thread.Sleep(3000);
         playerName[1] = "Baymax";
         Console.WriteLine(" ");
         Console.WriteLine("Lets Play !");
@@ -298,4 +299,5 @@ void BaymaxTurn()
     }
     Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
     gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+    Thread.Sleep(2000);
 }
