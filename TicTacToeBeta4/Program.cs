@@ -16,23 +16,10 @@ string playerInput;
 
 SetUp();
 
-/*Lets Play (2Player)!
-void TwoPlayersGame()
-{
-    while (true) // invalid move if square occupied
-    {
-        currentPlayer = (currentPlayer + 1) % 2;
-        PlayerTurn();
-        DrawBoard();
-        CheckWin();
-        CheckDraw();
-    }
-}*/
-
 //Lets Play
 void LetsPlay()
 {
-    while (true) // invalid move if square occupied
+    GameOn://while (true)
     {
         if (numPlayers == 2)
         {
@@ -54,6 +41,7 @@ void LetsPlay()
         DrawBoard();
         CheckWin();
         CheckDraw();
+        goto GameOn;
     }
 }
 
