@@ -3,16 +3,14 @@
 //declare & initialize
 char[,] gameBoard = new Char[3,3];
 char[] playerSymbol = {'X','O','Ö'};
-//bool invalidMove = false;
-int gameMarker = 0;
+//int gameMarker = 0;
 string[] playerName = new string[4]; //Store Player Names
 int numPlayers;
-bool gameWinner = false;
-bool gameDraw = false;
+//bool gameWinner = false;
 int currentPlayer = 1;
 int playerChoiceX = 0;
 int playerChoiceY = 0;
-string playerInput;
+//string playerInput;
 
 SetUp();
 
@@ -38,6 +36,7 @@ void LetsPlay()
                 BaymaxTurn();
             }
         }
+
         DrawBoard();
         CheckWin();
         CheckDraw();
@@ -132,49 +131,49 @@ void CheckWin()
 {
     if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0]) //row 0-2
     {
-        gameWinner = true;
+        //gameWinner = true;
         HasWon();
     }
 
     if (gameBoard[0,1] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,1]) //row 3-5
     {
-        gameWinner = true;
+        //gameWinner = true;
         HasWon();
     }
 
     if (gameBoard[0,2] == gameBoard[1,2] && gameBoard[1,2] == gameBoard[2,2]) //row 6-8
     {
-        gameWinner = true;
+        //gameWinner = true;
         HasWon();
     }
 
     if (gameBoard[0,0] == gameBoard[0,1] && gameBoard[0,1] == gameBoard[0,2]) //column 0-6
     {
-        gameWinner = true;
+        //gameWinner = true;
         HasWon();
     }
 
     if (gameBoard[1,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[1,2]) //column 1-7
     {
-        gameWinner = true;
+        //gameWinner = true;
         HasWon();
     }
 
     if (gameBoard[2,0] == gameBoard[2,1] && gameBoard[2,1] == gameBoard[2,2]) //column 2-8
     {
-        gameWinner = true;
+        //gameWinner = true;
         HasWon();
     }
 
     if (gameBoard[0,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,2]) //Diagonal 0-8
     {
-        gameWinner = true;
+        //gameWinner = true;
         HasWon();
     }
 
     if (gameBoard[0,2] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,0]) //Diagonal 2-6
     {
-        gameWinner = true;
+        //gameWinner = true;
         HasWon();
     }
 }
@@ -182,7 +181,7 @@ void CheckWin()
 //Has won
 void HasWon()
 {
-    if (gameWinner)
+    //if (gameWinner)
     {
         Console.WriteLine($"{playerName[currentPlayer]} Wins !");
         PlayAgain();
@@ -194,7 +193,6 @@ void CheckDraw()
 {
     if (gameBoard[0,0] != '1' && gameBoard[1,0] != '2' && gameBoard[2,0] != '3' && gameBoard[0,1] != '4' && gameBoard[1,1] != '5' && gameBoard[2,1] != '6' && gameBoard[0,2] != '7' && gameBoard[1,2] != '8' && gameBoard[2,2] != '9')
     {
-        gameDraw = true;
         HasDrawn();
     }
 }
@@ -209,13 +207,20 @@ void HasDrawn()
 //Play Again
 void PlayAgain()
 {
+    Back2Game:
     Console.WriteLine("Would you like to play again?");
     Console.WriteLine("[1] for YES : [2] for NO");
-    int playAgain = Convert.ToInt32(Console.ReadLine());
+    string userInput = Console.ReadLine();
+    if ((userInput != "1") && (userInput != "2"))
+    {
+        Console.WriteLine("Invalid input.");
+        goto Back2Game;
+    }
+    int playAgain = Convert.ToInt32(userInput);
     if (playAgain == 1)
     {
         Console.Clear();
-        gameWinner = false;
+        //gameWinner = false;
         SetUp();
     }
     else
