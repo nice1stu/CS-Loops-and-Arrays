@@ -1,13 +1,18 @@
-﻿//TicTacToe Beta4
-//Start again with 2D arrays
+﻿//TicTacToe
 
 //declare & initialize
 char[,] gameBoard = new Char[3,3];
 char[] playerSymbol = {'X','O'}; //Player Symbols to use. PLayer 1 [0] = X, Player 2 & AI [1,2,3] = O
+bool invalidMove = false;
+int gameMarker = 0;
 string[] playerName = new string[4]; //Store Player Names
+int numPlayers;
+bool gameWinner = false;
+bool gameDraw = false;
 int currentPlayer = 1;
 int playerChoiceX = 0;
 int playerChoiceY = 0;
+string playerInput;
 
 SetUp();
 
@@ -32,16 +37,10 @@ void SetUp()
     Console.WriteLine("     - by Stewart Wan -");
 
     //Number of players
-    NumberOfPlayers:
     Console.WriteLine("Please enter the number of player 1 or 2");
-    string numPlayers = Console.ReadLine();
-    if (numPlayers != "1" && numPlayers != "2")
-    {
-        Console.WriteLine("Invalid entry, please try again");
-        goto NumberOfPlayers;
-    }
-    double numPlayersD = Convert.ToDouble(numPlayers);
-    if (numPlayersD == 2)
+    numPlayers = Convert.ToInt32(Console.ReadLine());
+    numPlayers = (int)Math.Clamp((double)numPlayers, 1, 2);
+    if (numPlayers == 2)
     {
         //Players enter name
         for (int i = 0; i < 2; i++)
@@ -88,55 +87,80 @@ void PlayerTurn()
     PlayerInput:
     Console.Write($"{playerName[currentPlayer]} press the Num key you want to play");
     NumKeyInput();
+    /*Console.WriteLine("enter where you want to play along X axis");
+    int playerChoiceX = Convert.ToInt32(Console.ReadLine());
+    if (playerChoiceX !=0 && playerChoiceX !=1 && playerChoiceX !=2)
+    {
+        Console.WriteLine("invalid input");
+        goto PlayerInput;
+    }
+    Console.WriteLine("enter where you want to play along Y axis");
+    int playerChoiceY = Convert.ToInt32(Console.ReadLine());
+    if (playerChoiceY !=0 && playerChoiceY !=1 && playerChoiceY !=2)
+    {
+        Console.WriteLine("invalid input");
+        goto PlayerInput;
+    }*/
 
     if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
     {
         Console.WriteLine("Cell has been played, please select another cell");
         goto PlayerInput;
     }
-    gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
+    else
+    {
+        gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
+    }
 }
 
 //check win
 void CheckWin()
 {
-    if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0])
+    if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0]) //row 0-2
     {
+        gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,1] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,1])
+    if (gameBoard[0,1] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,1]) //row 3-5
     {
+        gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,2] == gameBoard[1,2] && gameBoard[1,2] == gameBoard[2,2])
+    if (gameBoard[0,2] == gameBoard[1,2] && gameBoard[1,2] == gameBoard[2,2]) //row 6-8
     {
+        gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,0] == gameBoard[0,1] && gameBoard[0,1] == gameBoard[0,2])
+    if (gameBoard[0,0] == gameBoard[0,1] && gameBoard[0,1] == gameBoard[0,2]) //column 0-6
     {
+        gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[1,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[1,2])
+    if (gameBoard[1,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[1,2]) //column 1-7
     {
+        gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[2,0] == gameBoard[2,1] && gameBoard[2,1] == gameBoard[2,2])
+    if (gameBoard[2,0] == gameBoard[2,1] && gameBoard[2,1] == gameBoard[2,2]) //column 2-8
     {
+        gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,2])
+    if (gameBoard[0,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,2]) //Diagonal 0-8
     {
+        gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,2] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,0])
+    if (gameBoard[0,2] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,0]) //Diagonal 2-6
     {
+        gameWinner = true;
         HasWon();
     }
 }
@@ -144,11 +168,11 @@ void CheckWin()
 //Has won
 void HasWon()
 {
-   // if (gameWinner)
-   // {
+    if (gameWinner)
+    {
         Console.WriteLine($"{playerName[currentPlayer]} Wins !");
         PlayAgain();
-    //}
+    }
 }
 
 //check draw
@@ -156,6 +180,7 @@ void CheckDraw()
 {
     if (gameBoard[0,0] != '1' && gameBoard[1,0] != '2' && gameBoard[2,0] != '3' && gameBoard[0,1] != '4' && gameBoard[1,1] != '5' && gameBoard[2,1] != '6' && gameBoard[0,2] != '7' && gameBoard[1,2] != '8' && gameBoard[2,2] != '9')
     {
+        gameDraw = true;
         HasDrawn();
     }
 }
@@ -176,7 +201,7 @@ void PlayAgain()
     if (playAgain == 1)
     {
         Console.Clear();
-        //gameWinner = false;
+        gameWinner = false;
         SetUp();
     }
     else

@@ -50,17 +50,6 @@ void SetUp()
             playerName[i] = playerAnswer;
         }
 
-/*
-    }
-    else
-    {
-        Console.WriteLine("Player 1, please enter your name");
-        string playerAnswer = Console.ReadLine();
-        playerName[0] = playerAnswer;
-        Console.WriteLine("Player 2 is WALL-E");
-        playerName[2] = "WALL-E";
-    }
-*/
         Console.WriteLine(" ");
         Console.WriteLine("Lets Play !");
         Console.WriteLine(" ");
@@ -87,21 +76,7 @@ void PlayerTurn()
     PlayerInput:
     Console.Write($"{playerName[currentPlayer]} press the Num key you want to play");
     NumKeyInput();
-    /*Console.WriteLine("enter where you want to play along X axis");
-    int playerChoiceX = Convert.ToInt32(Console.ReadLine());
-    if (playerChoiceX !=0 && playerChoiceX !=1 && playerChoiceX !=2)
-    {
-        Console.WriteLine("invalid input");
-        goto PlayerInput;
-    }
-    Console.WriteLine("enter where you want to play along Y axis");
-    int playerChoiceY = Convert.ToInt32(Console.ReadLine());
-    if (playerChoiceY !=0 && playerChoiceY !=1 && playerChoiceY !=2)
-    {
-        Console.WriteLine("invalid input");
-        goto PlayerInput;
-    }*/
-
+    
     if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
     {
         Console.WriteLine("Cell has been played, please select another cell");
@@ -116,49 +91,49 @@ void PlayerTurn()
 //check win
 void CheckWin()
 {
-    if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0]) //row 0-2
+    if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0])
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,1] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,1]) //row 3-5
+    if (gameBoard[0,1] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,1])
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,2] == gameBoard[1,2] && gameBoard[1,2] == gameBoard[2,2]) //row 6-8
+    if (gameBoard[0,2] == gameBoard[1,2] && gameBoard[1,2] == gameBoard[2,2])
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,0] == gameBoard[0,1] && gameBoard[0,1] == gameBoard[0,2]) //column 0-6
+    if (gameBoard[0,0] == gameBoard[0,1] && gameBoard[0,1] == gameBoard[0,2])
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[1,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[1,2]) //column 1-7
+    if (gameBoard[1,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[1,2])
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[2,0] == gameBoard[2,1] && gameBoard[2,1] == gameBoard[2,2]) //column 2-8
+    if (gameBoard[2,0] == gameBoard[2,1] && gameBoard[2,1] == gameBoard[2,2])
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,2]) //Diagonal 0-8
+    if (gameBoard[0,0] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,2])
     {
         gameWinner = true;
         HasWon();
     }
 
-    if (gameBoard[0,2] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,0]) //Diagonal 2-6
+    if (gameBoard[0,2] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,0])
     {
         gameWinner = true;
         HasWon();
