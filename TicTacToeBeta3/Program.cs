@@ -62,15 +62,35 @@ void SetUp()
 //Drawboard
 void DrawBoard()
 {
-    Console.Clear();
+    for (int i = 0; i < 3; i++)
+    {
+        Console.WriteLine($"{cellSymbol[6]} | {cellSymbol[7]} | {cellSymbol[8]}");
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    /*Console.Clear();
     Console.WriteLine();
     Console.WriteLine($"{cellSymbol[6]} | {cellSymbol[7]} | {cellSymbol[8]}");
     Console.WriteLine("- + - + - ");
     Console.WriteLine($"{cellSymbol[3]} | {cellSymbol[4]} | {cellSymbol[5]}");
     Console.WriteLine("- + - + - ");
     Console.WriteLine($"{cellSymbol[0]} | {cellSymbol[1]} | {cellSymbol[2]}");
-    Console.WriteLine();
+    Console.WriteLine();*/
 }
+
+
+
+
+
+
+
+
 
 //Player moves
 void PlayerMove()
