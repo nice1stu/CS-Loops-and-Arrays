@@ -8,39 +8,8 @@ int numPlayers;
 int currentPlayer = 1;
 int playerChoiceX = 0;
 int playerChoiceY = 0;
-//bool hasDrawn = false;
 
 SetUp();
-
-//Lets Play
-void LetsPlay()
-{
-    GameOn:
-    {
-        if (numPlayers == 2)
-        {
-            currentPlayer = (currentPlayer + 1) % 2;
-            PlayerTurn();
-        }
-        else
-        {
-            currentPlayer = (currentPlayer + 1) % 2;
-            if (currentPlayer == 0)
-            {
-                PlayerTurn();
-            }
-            else
-            {
-                BaymaxTurn();
-            }
-        }
-
-        DrawBoard();
-        CheckWin();
-        CheckDraw();
-        goto GameOn;
-    }
-}
 
 //Setup Game
 void SetUp()
@@ -92,6 +61,36 @@ void SetUp()
         Console.WriteLine(" ");
         DrawBoard();
         LetsPlay();
+    }
+}
+
+//Lets Play
+void LetsPlay()
+{
+    GameOn:
+    {
+        if (numPlayers == 2)
+        {
+            currentPlayer = (currentPlayer + 1) % 2;
+            PlayerTurn();
+        }
+        else
+        {
+            currentPlayer = (currentPlayer + 1) % 2;
+            if (currentPlayer == 0)
+            {
+                PlayerTurn();
+            }
+            else
+            {
+                BaymaxTurn();
+            }
+        }
+
+        DrawBoard();
+        CheckWin();
+        CheckDraw();
+        goto GameOn;
     }
 }
 
@@ -178,36 +177,6 @@ void CheckWin()
         HasWon();
     }
 }
-
-
-
-
-// function to check, whether all 3 cells in one row are 'X'
-/*void CheckRow(int row)
-{
-    // check all three columns of that row
-    for (int col = 0; col < 3; col++)
-    {
-        // if any of the cells is not an 'X', return
-        if ((gameBoard[col, row] != 'X') || (gameBoard[col, row] != 'O'))
-            return;
-    }
-    // if we came this far, the whole row is 'X's
-    HasWon();
-}*/
-
-/*void CheckCol(int col)
-{
-    // check all three columns of that row
-    for (int row = 0; row < 3; row++)
-    {
-        // if any of the cells is not an 'X', return
-        if ((gameBoard[row, col] != 'X') || (gameBoard[row, col] != 'O'))
-            return;
-    }
-    // if we came this far, the whole row is 'X's
-    HasWon();
-}*/
 
 //Has won
 void HasWon()
@@ -345,9 +314,78 @@ void BaymaxTurn()
     gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
     Thread.Sleep(2000);
 }
-/*
-void SkynetTurn()
+
+
+//Not working
+//Smart AI
+/*void SkynetTurn()
 {
+    if (gameBoard[1, 1] == '5')
+    {
+        playerChoiceX = 1;
+        playerChoiceY = 1;
+    }
+    //else if ((gameBoard[0, 0] != '5') || (gameBoard[0, 0] != 'X'))
+    //{
+        playerChoiceX = 0;
+        playerChoiceY = 0;
+    //}
+    /*else if ((gameBoard[2, 2] != '5') || (gameBoard[2, 2] != 'X'))
+    {
+        playerChoiceX = 2;
+        playerChoiceY = 2;
+    }
+    else if ((gameBoard[0, 2] != '5') || (gameBoard[0, 2] != 'X'))
+    {
+        playerChoiceX = 0;
+        playerChoiceY = 2;
+    }
+    else if ((gameBoard[2, 0] != '5') || (gameBoard[2, 0] != 'X'))
+    {
+        playerChoiceX = 2;
+        playerChoiceY = 0;
+    }
+    if ((gameBoard[1, 1] != 'X') && (gameBoard[0, 1] != 'X'))
+    {
+        playerChoiceX = 2;
+        playerChoiceY = 1;
+    }
+    else if ((gameBoard[1, 1] != 'X') || (gameBoard[1, 0] != 'X'))
+    {
+        playerChoiceX = 1;
+        playerChoiceY = 2;
+    }
+    else if ((gameBoard[1, 1] != 'X') || (gameBoard[2, 1] != 'X'))
+    {
+        playerChoiceX = 0;
+        playerChoiceY = 1;
+    }
+    else if ((gameBoard[1, 1] != 'X') || (gameBoard[1, 2] != 'X'))
+    {
+        playerChoiceX = 1;
+        playerChoiceY = 0;
+    }
+    else if ((gameBoard[1, 1] != 'X') || (gameBoard[2, 0] != 'X'))
+    {
+        playerChoiceX = 0;
+        playerChoiceY = 2;
+    }
+    playerChoiceX = 2;
+    playerChoiceY = 0;
+
+Random random = new Random();
+PlayerInput:
+playerChoiceX = random.Next(0, 3);
+playerChoiceY = random.Next(0, 3);
+if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+{
+    //Console.WriteLine("Cell has been played, please select another cell");
+    goto PlayerInput;
+}
+Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+Thread.Sleep(2000);
+}
 //optimal strategy playing 2nd
 //(centre) - corner - (!corner) - corner - (block)...
 //(corner) - centre - (!corner) - side - (block)...
@@ -488,4 +526,32 @@ void SkynetTurn()
     Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
     gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
     Thread.Sleep(2000);
+}*/
+
+// function to check, whether all 3 cells in one row are 'X'
+/*void CheckRow(int row)
+{
+    // check all three columns of that row
+    for (int col = 0; col < 3; col++)
+    {
+        // if any of the cells is not an 'X', return
+        if ((gameBoard[col, row] != 'X') || (gameBoard[col, row] != 'O'))
+            return;
+    }
+    // if we came this far, the whole row is 'X's
+    HasWon();
+}*/
+
+// function to check, whether all 3 cells in one col are 'X'
+/*void CheckCol(int col)
+{
+    // check all three columns of that row
+    for (int row = 0; row < 3; row++)
+    {
+        // if any of the cells is not an 'X', return
+        if ((gameBoard[row, col] != 'X') || (gameBoard[row, col] != 'O'))
+            return;
+    }
+    // if we came this far, the whole row is 'X's
+    HasWon();
 }*/
