@@ -98,6 +98,7 @@ void SetUp()
 void DrawBoard()
 {
     Console.Clear();
+    Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine();
     Console.WriteLine($" {gameBoard[0,2]} | {gameBoard[1,2]} | {gameBoard[2,2]}");
     Console.WriteLine(" - + - + -");
@@ -105,6 +106,7 @@ void DrawBoard()
     Console.WriteLine(" - + - + - ");
     Console.WriteLine($" {gameBoard[0,0]} | {gameBoard[1,0]} | {gameBoard[2,0]}");
     Console.WriteLine();
+    Console.ResetColor();
 }
 
 //Player Turn
@@ -283,7 +285,7 @@ void BaymaxTurn()
     playerChoiceY = random.Next(0, 3);
     if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
     {
-        Console.WriteLine("Cell has been played, please select another cell");
+        //Console.WriteLine("Cell has been played, please select another cell");
         goto PlayerInput;
     }
     Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);

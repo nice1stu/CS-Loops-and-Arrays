@@ -8,6 +8,7 @@ int numPlayers;
 int currentPlayer = 1;
 int playerChoiceX = 0;
 int playerChoiceY = 0;
+//bool hasDrawn = false;
 
 SetUp();
 
@@ -98,6 +99,7 @@ void SetUp()
 void DrawBoard()
 {
     Console.Clear();
+    Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine();
     Console.WriteLine($" {gameBoard[0,2]} | {gameBoard[1,2]} | {gameBoard[2,2]}");
     Console.WriteLine(" - + - + -");
@@ -105,6 +107,7 @@ void DrawBoard()
     Console.WriteLine(" - + - + - ");
     Console.WriteLine($" {gameBoard[0,0]} | {gameBoard[1,0]} | {gameBoard[2,0]}");
     Console.WriteLine();
+    Console.ResetColor();
 }
 
 //Player Turn
@@ -123,6 +126,18 @@ void PlayerTurn()
 //check win
 void CheckWin()
 {
+    // check row 0: 0 1 2 
+    // check row 1: 3 4 5
+    // check row 2: 6 7 8
+    /*for (int row = 0; row < 3; row++)
+    {
+        CheckRow(row);
+    }*/
+
+    /*for (int col = 0; col < 3; col++)
+    {
+        CheckCol(col);
+    }*/
     if (gameBoard[0,0] == gameBoard[1,0] && gameBoard[1,0] == gameBoard[2,0]) //row 1-3
     {
         HasWon();
@@ -164,6 +179,36 @@ void CheckWin()
     }
 }
 
+
+
+
+// function to check, whether all 3 cells in one row are 'X'
+/*void CheckRow(int row)
+{
+    // check all three columns of that row
+    for (int col = 0; col < 3; col++)
+    {
+        // if any of the cells is not an 'X', return
+        if ((gameBoard[col, row] != 'X') || (gameBoard[col, row] != 'O'))
+            return;
+    }
+    // if we came this far, the whole row is 'X's
+    HasWon();
+}*/
+
+/*void CheckCol(int col)
+{
+    // check all three columns of that row
+    for (int row = 0; row < 3; row++)
+    {
+        // if any of the cells is not an 'X', return
+        if ((gameBoard[row, col] != 'X') || (gameBoard[row, col] != 'O'))
+            return;
+    }
+    // if we came this far, the whole row is 'X's
+    HasWon();
+}*/
+
 //Has won
 void HasWon()
 {
@@ -175,6 +220,16 @@ void HasWon()
 //check draw
 void CheckDraw()
 {
+    /*for (int x = 0; x < 3; x++)
+    {
+        for (int y = 0; y < 3; y++)
+        {
+            if ((gameBoard[x,y] != 'X') && (gameBoard[x,y] != 'O'))// || (gameBoard[x,y] != 'Ö'))
+            {
+                break;//HasDrawn();
+            }
+        }
+    }*/
     if (gameBoard[0,0] != '1' && gameBoard[1,0] != '2' && gameBoard[2,0] != '3' && gameBoard[0,1] != '4' && gameBoard[1,1] != '5' && gameBoard[2,1] != '6' && gameBoard[0,2] != '7' && gameBoard[1,2] != '8' && gameBoard[2,2] != '9')
     {
         HasDrawn();
@@ -283,10 +338,154 @@ void BaymaxTurn()
     playerChoiceY = random.Next(0, 3);
     if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
     {
-        Console.WriteLine("Cell has been played, please select another cell");
+        //Console.WriteLine("Cell has been played, please select another cell");
         goto PlayerInput;
     }
     Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
     gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
     Thread.Sleep(2000);
 }
+/*
+void SkynetTurn()
+{
+//optimal strategy playing 2nd
+//(centre) - corner - (!corner) - corner - (block)...
+//(corner) - centre - (!corner) - side - (block)...
+    //place 3rd in a row to win
+    check 2inRow
+    if (gameBoard[0,0] == gameBoard[1,0] || gameBoard[1,0] == gameBoard[2,0] || gameBoard[0,0] == gameBoard[2,0])
+    {
+        for (int x = 0; x < 3; x++)
+        {
+            playerChoiceX = x;
+            playerChoiceY = 0;
+            if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+            {  
+                goto PlayerInput;
+            }
+            Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+            gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+            Thread.Sleep(2000);
+        }
+    if (gameBoard[1,0] == gameBoard[1,1] || gameBoard[1,1] == gameBoard[1,2] || gameBoard[1,0] == gameBoard[1,2])
+    {
+        for (int x = 0; x < 3; x++)
+        {
+            playerChoiceX = x;
+            playerChoiceY = 0;
+            if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+            {  
+                goto PlayerInput;
+            }
+            Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+            gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+            Thread.Sleep(2000);
+        }
+    if (gameBoard[2,0] == gameBoard[2,1] || gameBoard[2,1] == gameBoard[2,2] || gameBoard[2,0] == gameBoard[2,2])
+    {
+        for (int x = 0; x < 3; x++)
+        {
+            playerChoiceX = x;
+            playerChoiceY = 0;
+            if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+            {  
+                goto PlayerInput;
+            }
+            Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+            gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+            Thread.Sleep(2000);
+        }
+    if (gameBoard[0,0] == gameBoard[1,0] || gameBoard[1,0] == gameBoard[2,0] || gameBoard[0,0] == gameBoard[2,0])
+    {
+        for (int y = 0; y < 3; y++)
+        {
+            playerChoiceX = 0;
+            playerChoiceY = y;
+            if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+            {  
+                goto PlayerInput;
+            }
+            Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+            gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+            Thread.Sleep(2000);
+        }
+    if (gameBoard[0,1] == gameBoard[1,1] || gameBoard[1,1] == gameBoard[2,1] || gameBoard[0,1] == gameBoard[2,1])
+    {
+        for (int y = 0; y < 3; y++)
+        {
+            playerChoiceX = 0;
+            playerChoiceY = y;
+            if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+            {  
+                goto PlayerInput;
+            }
+            Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+            gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+            Thread.Sleep(2000);
+        }
+    if (gameBoard[0,2] == gameBoard[1,2] || gameBoard[1,2] == gameBoard[2,2] || gameBoard[0,2] == gameBoard[2,2])
+    {
+        for (int y = 0; y < 3; y++)
+        {
+            playerChoiceX = 0;
+            playerChoiceY = y;
+            if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+            {  
+                goto PlayerInput;
+            }
+            Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+            gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+            Thread.Sleep(2000);
+        }
+    if (gameBoard[0,0] == gameBoard[1,1] || gameBoard[1,1] == gameBoard[2,2] || gameBoard[0,0] == gameBoard[2,2]) //Diagonal 0-9
+    {
+        for (int d = 0; d < 3; d++)
+        {
+            playerChoiceX = d;
+            playerChoiceY = d;
+            if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+            {  
+                goto PlayerInput;
+            }
+            Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+            gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+            Thread.Sleep(2000);
+    }
+
+    if (gameBoard[0,2] == gameBoard[1,1] && gameBoard[1,1] == gameBoard[2,0]) //Diagonal 3-7
+    {
+        for (int d = 0; d < 3; d++)
+        {
+            playerChoiceX = d;
+            playerChoiceY = 2-d;
+            if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+            {  
+                goto PlayerInput;
+            }
+            Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+            gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+            Thread.Sleep(2000);
+    }
+        
+        
+        
+    Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+    gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+    Thread.Sleep(2000);
+    {
+    //are there 2 opponent in a row - block
+    //5 (centre)  or 1 / 3 / 7 / 9 (corner)
+    //block 3 in a row
+    Random random = new Random();
+    PlayerInput:
+    playerChoiceX = random.Next(0, 3);
+    playerChoiceY = random.Next(0, 3);
+    if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
+    {
+        //Console.WriteLine("Cell has been played, please select another cell");
+        goto PlayerInput;
+    }
+    Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
+    gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[2];
+    Thread.Sleep(2000);
+}*/
