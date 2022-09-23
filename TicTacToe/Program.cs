@@ -48,6 +48,7 @@ void SetUp()
     gameBoard[0, 0] = '1'; gameBoard[1, 0] = '2'; gameBoard[2, 0] = '3';
     gameBoard[0, 1] = '4'; gameBoard[1, 1] = '5'; gameBoard[2, 1] = '6';
     gameBoard[0, 2] = '7'; gameBoard[1, 2] = '8'; gameBoard[2, 2] = '9';
+    
     Console.Clear();
     Console.WriteLine("--X- Welcome to TicTacToe -O--");
     Console.WriteLine("     - by Stewart Wan -");
@@ -205,7 +206,6 @@ void PlayAgain()
     if (playAgain == 1)
     {
         Console.Clear();
-        //gameWinner = false;
         SetUp();
     }
     else
@@ -275,7 +275,6 @@ void NumKeyInput()
 }
 
 //Single Player Methods
-//Random Gen numbers
 void BaymaxTurn()
 {
     Random random = new Random();
@@ -284,7 +283,6 @@ void BaymaxTurn()
     playerChoiceY = random.Next(0, 3);
     if (gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[0] || gameBoard [playerChoiceX,playerChoiceY] == playerSymbol[2])
     {
-        //Console.WriteLine("Cell has been played, please select another cell");
         goto PlayerInput;
     }
     Console.WriteLine("Baymax plays " + gameBoard[playerChoiceX, playerChoiceY]);
