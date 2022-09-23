@@ -116,7 +116,7 @@ void PlayerTurn()
     NumKeyInput();
     if (gameBoard [playerChoiceX,playerChoiceY] == 'X' || gameBoard [playerChoiceX,playerChoiceY] == 'O')
     {
-        Console.WriteLine("Cell has been played, please select another cell");
+        Console.WriteLine("Cell has been played, please select another number");
         goto PlayerInput;
     }
     gameBoard[playerChoiceX, playerChoiceY] = playerSymbol[currentPlayer];
@@ -170,8 +170,7 @@ void CheckWin()
 void HasWon()
 {
     Console.WriteLine($"{playerName[currentPlayer]} Wins !");
-        PlayAgain();
-    
+    PlayAgain();
 }
 
 //check draw
