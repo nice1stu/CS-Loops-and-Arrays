@@ -74,7 +74,7 @@ void String2Int()
 
 //return last in array
 
-char[] tripleArray = new Char [3];
+string[] tripleArray = new String [3];
 
 for (int j = 0; j < 3; j++)
 {
@@ -82,7 +82,7 @@ for (int j = 0; j < 3; j++)
     {
         Console.WriteLine("please enter 3 elements to store");
         string userInput = Console.ReadLine();
-        char store2Array = Char.Parse(userInput);
+        string store2Array = userInput;
         tripleArray[i] = store2Array;
     }
 
