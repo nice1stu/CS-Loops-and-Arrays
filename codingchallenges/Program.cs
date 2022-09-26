@@ -89,3 +89,22 @@ for (int j = 0; j < 3; j++)
     Console.WriteLine($"The Last element of the array is {tripleArray[2]}");
     Console.WriteLine();
 }
+
+//reverse Array
+
+void ReverseArray()
+{
+    for (int j = 0; j < 3; j++)
+    {
+        Console.WriteLine("How many elements in this array?");
+        int numElements = Convert.ToInt32(Console.ReadLine());
+        for (int i = 0; i < numElements; i++)
+        {
+
+        }
+
+        char[] reversingArray = new char[numElements];
+
+    }
+
+}
