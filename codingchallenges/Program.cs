@@ -4,7 +4,7 @@
 Convert2Time();
 FlipIntBool();
 DivisbileBy5();
-
+String2Int();
 
 void Convert2Time()
 {
@@ -54,6 +54,20 @@ void DivisbileBy5()
         divisibleBy5 = Convert.ToBoolean(userinput % 5);
         string answer =  divisibleBy5 ? "False" : "True";
         Console.WriteLine($"{userinput} divisble by 5 is {answer}");
+        Console.WriteLine();
+    }
+}
+
+//string to int
+
+void String2Int()
+{
+    for (int i = 0; i < 3; i++)
+    {
+        Console.WriteLine("Enter a number to convert to integer");
+        string userinput = Console.ReadLine();
+        int userInputI = Int32.Parse(userinput);
+        Console.WriteLine($"{userinput} is {userInputI}");
         Console.WriteLine();
     }
 }
