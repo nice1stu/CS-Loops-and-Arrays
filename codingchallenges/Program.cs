@@ -5,6 +5,7 @@ Convert2Time();
 FlipIntBool();
 DivisbileBy5();
 String2Int();
+LastinArray();
 
 void Convert2Time()
 {
@@ -74,20 +75,23 @@ void String2Int()
 
 //return last in array
 
-string[] tripleArray = new String [3];
-
-for (int j = 0; j < 3; j++)
+void LastinArray()
 {
-    for (int i = 0; i < 3; i++)
-    {
-        Console.WriteLine("please enter 3 elements to store");
-        string userInput = Console.ReadLine();
-        string store2Array = userInput;
-        tripleArray[i] = store2Array;
-    }
+    string[] tripleArray = new String [3];
 
-    Console.WriteLine($"The Last element of the array is {tripleArray[2]}");
-    Console.WriteLine();
+    for (int j = 0; j < 3; j++)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            Console.WriteLine("please enter 3 elements to store");
+            string userInput = Console.ReadLine();
+            string store2Array = userInput;
+            tripleArray[i] = store2Array;
+        }
+
+        Console.WriteLine($"The Last element of the array is {tripleArray[2]}");
+        Console.WriteLine();
+    }
 }
 
 //reverse Array
