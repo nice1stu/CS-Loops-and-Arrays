@@ -72,3 +72,20 @@ void String2Int()
     }
 }
 
+//return last in array
+
+char[] tripleArray = new Char [3];
+
+for (int j = 0; j < 3; j++)
+{
+    for (int i = 0; i < 3; i++)
+    {
+        Console.WriteLine("please enter 3 elements to store");
+        string userInput = Console.ReadLine();
+        char store2Array = Char.Parse(userInput);
+        tripleArray[i] = store2Array;
+    }
+
+    Console.WriteLine($"The Last element of the array is {tripleArray[2]}");
+    Console.WriteLine();
+}
