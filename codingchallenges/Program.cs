@@ -1,14 +1,16 @@
 ﻿
 //to minutes
-int inMinutes = 0;
-int inSeconds = 0;
-
 
 Convert2Time();
 FlipIntBool();
+DivisbileBy5();
+
 
 void Convert2Time()
 {
+    int inMinutes = 0;
+    int inSeconds = 0;
+    
     for (int i = 0; i < 3; i++)
     {
         Console.WriteLine("Enter a number to convert to time");
@@ -37,6 +39,22 @@ void FlipIntBool()
     // Convert bool to int.
     int y = Convert.ToInt32(f);
     Console.WriteLine($"FlipIntBool {y}"); // 0
+    Console.WriteLine();
 }
 
+//divisible by 5
+
+void DivisbileBy5()
+{
+    for (int i = 0; i < 3; i++)
+    {
+        bool divisibleBy5 = true;
+        Console.WriteLine("Enter a number to test divisibnilty by 5");
+        int userinput = Convert.ToInt32(Console.ReadLine());
+        divisibleBy5 = Convert.ToBoolean(userinput % 5);
+        string answer =  divisibleBy5 ? "False" : "True";
+        Console.WriteLine($"{userinput} divisble by 5 is {answer}");
+        Console.WriteLine();
+    }
+}
 
