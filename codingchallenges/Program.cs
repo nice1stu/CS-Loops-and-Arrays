@@ -1,5 +1,4 @@
-﻿
-//to minutes
+﻿//to minutes
 
 Convert2Time();
 FlipIntBool();
